@@ -1,0 +1,6 @@
+@Polokwane_surf.Server_HostAddress = http://localhost:5043
+
+GET {{Polokwane_surf.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
