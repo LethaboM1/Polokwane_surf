@@ -1,295 +1,208 @@
-//import React, { useState } from 'react';
-//import '../App.css';
-//import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaFax } from 'react-icons/fa';
-
-//const Contact = () => {
-//    const [name, setName] = useState('');
-//    const [email, setEmail] = useState('');
-//    const [subject, setSubject] = useState('');
-//    const [message, setMessage] = useState('');
-//    const [phoneNumber, setPhoneNumber] = useState('');
-
-//    const handleSubmit = async (e) => {
-//        e.preventDefault();
-
-//        const formData = {
-//            name,
-//            phoneNumber,
-//            email,
-//            subject,
-//            message
-//        };
-
-//        try {
-//            const response = await fetch('https://localhost:7059/api/Contact/submit', {
-//                method: 'POST',
-//                headers: { 'Content-Type': 'application/json' },
-//                body: JSON.stringify(formData),
-//            });
-
-//            if (!response.ok) {
-//                throw new Error(`HTTP error! Status: ${response.status}`);
-//            }
-
-//            const data = await response.json();
-//            console.log('Success:', data);
-//            alert("Your message has been sent successfully!");
-
-//            // Optional: Clear the form
-//            setName('');
-//            setPhoneNumber('');
-//            setEmail('');
-//            setSubject('');
-//            setMessage('');
-//        } catch (error) {
-//            console.error('Failed to send contact form:', error.message);
-//            alert("Unable to connect to server. Please make sure the backend is running.");
-//        }
-//    };
-
-
-
-//    return (
-//        <section id="contact" className="contact-section">
-//            <div className="section-heading d-flex align-items-center gap-3">
-//                <h4>CONTACT</h4>
-//                <div className="line"></div>
-//            </div>
-
-//            <div className="container">
-//                <div className="contact-grid">
-//                    {/* Left: Contact Info + Map */}
-//                    <div className="contact-info">
-//                        <div className="info-item">
-//                            <FaMapMarkerAlt className="info-icon" />
-//                            <div>
-//                                <strong>Physical Address:</strong><br />
-//                                9 Yster Street, Ladine, Polokwane, 0699
-//                            </div>
-//                        </div>
-//                        <div className="info-item">
-//                            <FaMapMarkerAlt className="info-icon" />
-//                            <div>
-//                                <strong>Postal Address:</strong><br />
-//                                P.O. Box 288, Ladanna, Polokwane, 0704
-//                            </div>
-//                        </div>
-//                        <div className="info-item">
-//                            <FaPhoneAlt className="info-icon" />
-//                            <div>
-//                                <strong>Telephone:</strong><br />
-//                                Tel: +27 (015) 293 1221
-//                            </div>
-//                        </div>
-//                        <div className="info-item">
-//                            <FaFax className="info-icon" />
-//                            <div>
-//                                <strong>Fax:</strong><br />
-//                                +27 (086) 480 5115
-//                            </div>
-//                        </div>
-//                        <div className="info-item">
-//                            <FaEnvelope className="info-icon" />
-//                            <div>
-//                                <strong>Email:</strong><br />
-//                                admin@polokwanesurfacing.co.za
-//                            </div>
-//                        </div>
-//                        {/*<iframe*/}
-//                        {/*    title="Polokwane Map"*/}
-//                        {/*    width="100%"*/}
-//                        {/*    height="250"*/}
-//                        {/*    style={{ border: 0 }}*/}
-//                        {/*    loading="lazy"*/}
-//                        {/*    allowFullScreen*/}
-//                        {/*    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3642.905446078409!2d29.44869371542826!3d-23.901540984504616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6d9d979b0ab47%3A0x7055d0d74dca4f96!2sPolokwane!5e0!3m2!1sen!2sza!4v1717672952220!5m2!1sen!2sza"*/}
-//                        {/*/>*/}
-//                    </div>
-
-//                    {/* Right: Contact Form */}
-//                    <form className="contact-form" onSubmit={handleSubmit}>
-//                        <input
-//                            type="text"
-//                            name="name"
-//                            placeholder="Your Name"
-//                            required
-//                            value={name}
-//                            onChange={(e) => setName(e.target.value)}
-//                        />
-//                        <input
-//                            type="text"
-//                            name="phoneNumber"
-//                            placeholder="Your Phone Number (for SMS)"
-//                            value={phoneNumber}
-//                            onChange={(e) => setPhoneNumber(e.target.value)}
-//                        />
-//                        <input
-//                            type="email"
-//                            name="email"
-//                            placeholder="Your Email"
-//                            required
-//                            value={email}
-//                            onChange={(e) => setEmail(e.target.value)}
-//                        />
-//                        <input
-//                            type="text"
-//                            name="subject"
-//                            placeholder="Subject"
-//                            required
-//                            value={subject}
-//                            onChange={(e) => setSubject(e.target.value)}
-//                        />
-//                        <textarea
-//                            name="message"
-//                            rows="5"
-//                            placeholder="Your Message"
-//                            required
-//                            value={message}
-//                            onChange={(e) => setMessage(e.target.value)}
-//                        />
-
-//                        <button type="submit" className="contact-button">Send Message</button>
-//                    </form>
-//                </div>
-//            </div>
-//        </section>
-//    );
-//};
-
-//export default Contact;
-
-
-
 import React, { useState } from 'react';
 import '../App.css';
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaFax } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaFax } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
-        // Simulate form submission
-        const formData = {
-            name,
-            phoneNumber,
-            email,
-            subject,
-            message
-        };
+        const formData = { name, mobileNumber, email, subject, message };
 
-        console.log('Form submitted:', formData);
-        alert("Your message has been sent successfully!");
+        try {
+            const response = await fetch('https://localhost:7059/api/contact/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-        // Clear the form
-        setName('');
-        setPhoneNumber('');
-        setEmail('');
-        setSubject('');
-        setMessage('');
+            const text = await response.text();
+            let result;
+            try {
+                result = JSON.parse(text);
+            } catch {
+                result = { message: text };
+            }
+
+            if (response.ok) {
+                toast.success("Your message has been sent successfully!", {
+                    position: "bottom-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'my-toast-success',
+                });
+
+                setName('');
+                setMobileNumber('');
+                setEmail('');
+                setSubject('');
+                setMessage('');
+            } else {
+                toast.error("? Failed to send: " + result.message, {
+                    position: "top-center",
+                    autoClose: 6000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'my-toast-error',
+                });
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            toast.error("? An error occurred while sending the message.", {
+                position: "bottom-center",
+                autoClose: 6000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'my-toast-error',
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <section id="contact" className="contact-section">
-            <div className="section-heading d-flex align-items-center gap-3">
-                <h4>CONTACT</h4>
-                <div className="line"></div>
-            </div>
 
             <div className="container">
-                <div className="contact-grid">
-                    {/* Left: Contact Info */}
-                    <div className="contact-info">
-                        <div className="info-item">
-                            <FaMapMarkerAlt className="info-icon" />
-                            <div>
-                                <strong>Physical Address:</strong><br />
-                                9 Yster Street, Ladine, Polokwane, 0699
-                            </div>
-                        </div>
-                        <div className="info-item">
-                            <FaMapMarkerAlt className="info-icon" />
-                            <div>
-                                <strong>Postal Address:</strong><br />
-                                P.O. Box 288, Ladanna, Polokwane, 0704
-                            </div>
-                        </div>
-                        <div className="info-item">
-                            <FaPhoneAlt className="info-icon" />
-                            <div>
-                                <strong>Telephone:</strong><br />
-                                Tel: +27 (015) 293 1221
-                            </div>
-                        </div>
-                        <div className="info-item">
-                            <FaFax className="info-icon" />
-                            <div>
-                                <strong>Fax:</strong><br />
-                                +27 (086) 480 5115
-                            </div>
-                        </div>
-                        <div className="info-item">
-                            <FaEnvelope className="info-icon" />
-                            <div>
-                                <strong>Email:</strong><br />
-                                admin@polokwanesurfacing.co.za
-                            </div>
-                        </div>
+                <div className="row gy-3">
+                    <div className="section-heading d-flex align-items-center gap-3">
+                        <h4>CONTACT</h4>
+                        <div className="line"></div>
                     </div>
 
-                    {/* Right: Contact Form */}
-                    <form className="contact-form" onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Your Name"
-                            required
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            name="phoneNumber"
-                            placeholder="Your Phone Number (for SMS)"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Your Email"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            name="subject"
-                            placeholder="Subject"
-                            required
-                            value={subject}
-                            onChange={(e) => setSubject(e.target.value)}
-                        />
-                        <textarea
-                            name="message"
-                            rows="5"
-                            placeholder="Your Message"
-                            required
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                        />
-                        <button type="submit" className="contact-button">Send Message</button>
-                    </form>
+                    <div className="contact-grid">
+                        {/* Left: Contact Info */}
+                        <div className="contact-info">
+                            <div className="info-item">
+                                <FaMapMarkerAlt className="info-icon" />
+                                <div>
+                                    <strong>Head Office Address:</strong><br />
+                                    9 Yster Street, Ladine, Polokwane, 0699<br />
+                                    <strong>Tel:</strong> 015 293 0736
+                                </div>
+                            </div>
+
+                            <div className="info-item">
+                                <FaMapMarkerAlt className="info-icon" />
+                                <div>
+                                    <strong>Postal Address:</strong><br />
+                                    P.O. Box 288, Ladanna, Polokwane, 0704
+                                </div>
+                            </div>
+
+                            <div className="info-item">
+                                <FaMapMarkerAlt className="info-icon" />
+                                <div>
+                                    <strong>Site Address:</strong><br />
+                                    Plot 22, Palmietfontein,<br />
+                                    Beyond South Gate Garage,<br />
+                                    Polokwane, 0700<br />
+                                    <strong>Cell:</strong> 082 885 0259
+                                </div>
+                            </div>
+
+                            <div className="info-item">
+                                <FaFax className="info-icon" />
+                                <div>
+                                    <strong>Fax:</strong><br />
+                                    +27 (086) 480 5115
+                                </div>
+                            </div>
+
+                            <div className="info-item">
+                                <FaEnvelope className="info-icon" />
+                                <div>
+                                    <strong>Email:</strong><br />
+                                    Quotes1@polokwanesurfacing.co.za
+                                </div>
+                            </div>
+
+                            {/* One map only - Head Office */}
+                            <div className="info-item">
+                                <div className="map-container">
+                                    <iframe
+                                        title="Head Office Map"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.526400645719!2d29.4553723!3d-23.888529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6cf16a5675a4d%3A0x3e8b87fef2f396e0!2s9%20Yster%20St%2C%20Ladine%2C%20Polokwane%2C%200699!5e0!3m2!1sen!2sza!4v1718129790000!5m2!1sen!2sza"
+                                        width="100%"
+                                        height="250"
+                                        style={{ border: 0 }}
+                                        allowFullScreen=""
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: Contact Form */}
+                        <form className="contact-form" onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Enter Full Name"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                name="mobileNumber"
+                                placeholder="Enter Mobile Number"
+                                value={mobileNumber}
+                                onChange={(e) => setMobileNumber(e.target.value)}
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter Email"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                name="subject"
+                                placeholder="Subject"
+                                required
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
+                            />
+                            <textarea
+                                name="message"
+                                rows="5"
+                                placeholder="Your Message"
+                                required
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                            />
+                            <button type="submit" className="contact-button" disabled={loading}>
+                                {loading ? <span className="spinner"></span> : "Send Message"}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+
+            {/* Toast Container for notifications */}
+            <ToastContainer />
         </section>
     );
 };
 
 export default Contact;
-

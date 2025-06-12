@@ -1,89 +1,98 @@
 import React, { useState } from 'react';
-import progress from '../assets/progress.png';
-import road from '../assets/road.png';
-import recent from '../assets/recent.png';
+import recent from '../assets/14.jpg';
+import progress from '../assets/4.jpg';
+import road from '../assets/9.jpg';
 import '../App.css';
 
-const categories = ['Contracts in Progress', 'Completed Contracts', 'Recent Contracts'];
+const categories = ['Recent Contracts','Contracts in Progress', 'Completed Contracts'];
 
 const portfolioItems = [
     {
+        category: 'Recent Contracts',
+        title: 'MOEPENG TRADING',
+        description: 'Rehabilitation of the Tambo and mashakeni streets in Nkowankowa',
+        client: 'Greater Giyani Municipality',
+        image: recent,
+    },
+    {
+        category: 'Recent Contracts',
+        title: 'Sef MOD PROJECTS ',
+        description: `3 years household based routine road maintenance project at Lephalale local Municipality in Limpopo Province.`,
+        client: 'Limpopo Provincial Government', 
+        Dept: 'Public Works, Road and Infrastructure - MS.Moloto M.V',
+        image: recent,
+    },
+    {
+        category: 'Recent Contracts',
+        title: 'MOTSEWAKHUMO JV MOCHEKU',
+        description: 'Allocation of Scope of works for upgrading of road from Ga Maja Moshate to Feke ',
+        client: 'Polokwane municipality',
+        image: recent,
+    },
+    {
         category: 'Contracts in Progress',
-        title: 'MUSEKWA',
-        description: 'Sealworks and surfacing',
-        client: 'Roads Agency Limpopo',
+        title: 'MALERATE CONSTRUCTION',
+        description: 'Allocation of Scope of work for upgrading pf the arterial road in Magongwa village from road D3378 to road D19 ( Ward 42)',
+        client: 'Polokwane municipality',
         image: progress,
     },
     {
         category: 'Completed Contracts',
-        title: 'MULEDANE SERVICE ROAD',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Thulamela Municipality',
+        title: 'RAEISEBE INFRASTRUCTURE DEVELOPERS ',
+        description: 'Construction of the Masisi street paved road phase 1',
+        client: 'Musina Local Municipality', 
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'WORCESTER ACCESS ROAD',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Roads Agency Limpopo',
+        title: 'MATLA A RONA CONSTRUCTION',
+        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D1 part A (2KM)',
+        client: 'Greater Giyani Municipality',
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'TSHELANG GAPE STREET',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Ba-Phalaborwa Municipality',
+        title: 'MARUNGANE PROJECTS',
+        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D1 part B (1,9KM)',
+        client: 'Greater Giyani Municipality',
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'KROMHOEK',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Blouberg Local Municipality',
+        title: 'RM MASHABA PROJECTS ',
+        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D2 part A (2KM)',
+        client: 'Greater Giyani Municipality',
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'THABO MBEKI STREET',
-        description: 'Cement stabilisation / prime coat and asphalt surfacing',
+        title: 'FUMMY PROJECTS',
+        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D2  part B (1,6KM)',
+        client: 'Greater Giyani Municipality',
+        image: road,
+    },
+    {
+        category: 'Completed Contracts',
+        title: 'MOEPEG TRADING',
+        description: 'Allocation for the preventative maintainence of roads and storm water : pavement milling at the Giyani section F phase 2 (2km)',
         client: 'Polokwane Municipality',
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'SESHEGO',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Polokwane Municipality',
+        title: 'MANGATLU TRADING ENTERPRISE',
+        description: 'Preventative Maintenance of Road D3770 and D3771 From Rita to Calais in the Mopani District of Limpopo Province for surfacing works.',
+        client: 'Roads Agency Limpopo Province',
         image: road,
     },
     {
         category: 'Completed Contracts',
-        title: 'AVON',
-        description: 'Prime coat and asphalt surfacing',
-        client: 'Blouberg Municipality',
+        title: 'MOTLOKWA TRANSPORT',
+        description: 'NEC3 Engineering and construction short contract (ecsc) Rev 02 2023 for - SLP road upgrade- Masonje Hill to Mpitikwane road',
+        client: 'Modikwa Platinum Mine',
         image: road,
     },
-    {
-        category: 'Recent Contracts',
-        title: 'VAALKOP',
-        description: 'Mass Earthworks - 1,090,000 m³',
-        client: 'Rustenburg Platinum Mines Ltd',
-        image: recent,
-    },
-    {
-        category: 'Recent Contracts',
-        title: 'GILEAD',
-        description: `Road D3556 - Double Seal: 50,000 m², Mass Earthworks: 84,730 m³`,
-        client: 'Roads Agency Limpopo',
-        image: recent,
-    },
-    {
-        category: 'Recent Contracts',
-        title: 'VILLIERS N3',
-        description: 'Asphalt overlaying - 114,773 m²',
-        client: 'N3 Toll Concession',
-        image: recent,
-    }
+
 ];
 
 
@@ -95,13 +104,13 @@ const Portfolio = () => {
     return (
         <section id="portfolio" className="portfolio-section">
 
-            <div className="section-heading d-flex align-items-center gap-3">
-                <h4>PORTFOLIO</h4>
-                <div className="line"></div>
-            </div>
-
             <div className="container">
-                <div className="row gy-4">
+                <div className="row gy-3">
+
+                    <div className="section-heading d-flex align-items-center gap-3">
+                        <h4>PORTFOLIO</h4>
+                        <div className="line"></div>
+                    </div>
             <div className="portfolio-tabs">
                 {categories.map((cat, index) => (
                     <button

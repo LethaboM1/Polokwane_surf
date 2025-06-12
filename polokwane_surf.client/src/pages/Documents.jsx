@@ -23,7 +23,7 @@ const documents = [
     {
         title: 'ISO Certification',
         description: 'Proof of ISO 9001 certification.',
-        file: '/pdf/CIBD.pdf',
+        file: '/pdf/CIDB',
         icon: Icon1,
     },
     {
@@ -46,7 +46,7 @@ const Documents = () => {
                     <div className="line"></div>
                 </div>
 
-                <div className="container">
+                <div className="container-fluid px-4">
                     <div className="row gy-4">
                         {documents.map((doc, index) => (
                             <div className="col-lg-4 col-md-6 d-flex" key={index}>

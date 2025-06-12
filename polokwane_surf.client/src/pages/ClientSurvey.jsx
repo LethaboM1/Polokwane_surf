@@ -37,12 +37,12 @@ const ClientSurvey = () => {
                     </div>
 
                     <form className="survey-form" onSubmit={handleSubmit}>
-                        <div className="row gy-3">
+                        <div className="row gy-4">
                             <div className="col-md-6">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Your Name"
+                                    placeholder="Enter your Full Name"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
@@ -53,7 +53,7 @@ const ClientSurvey = () => {
                                 <input
                                     type="email"
                                     className="form-control"
-                                    placeholder="Your Email"
+                                    placeholder="Enter your email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}

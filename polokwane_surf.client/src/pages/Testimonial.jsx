@@ -8,7 +8,6 @@ import test2 from '../assets/test2.jpg';
 import test3 from '../assets/2.jpg';
 import test4 from '../assets/3.jpg';
 import test5 from '../assets/4.jpg';
-
 import '../App.css';
 
 const testimonials = [
@@ -17,7 +16,8 @@ const testimonials = [
         title: '5th Mamabolo Monate Annual Soccer Tournament',
         feedback:
             'Polokwane Surfacing is proud to have been part of the 5th Mamabolo Monate Annual Soccer Tournament held between 23 and 31 December 2018.',
-        image: test1, 
+        image: test1,
+        name: 'Polokwane Surfacing',
     },
     {
         date: 'Aug 13, 2018',
@@ -25,6 +25,7 @@ const testimonials = [
         feedback:
             'Funding has been provided for the building of a classroom block for Kgakala Secondary School in Limpopo.',
         image: test2,
+        name: 'Polokwane Surfacing',
     },
     {
         name: 'Anonymous',
@@ -44,38 +45,36 @@ const testimonials = [
         feedback: 'Our community benefited greatly from their infrastructure upgrades. The team was respectful, efficient, and committed to excellence.',
         image: test5,
     }
-
 ];
-
 
 const Testimonials = () => {
     return (
         <section id="testimonials" className="testimonials section">
-                <div className="section-heading d-flex align-items-center gap-3">
-                <h4>TESTIMONIALS</h4>
-                <div className="line"></div>
-                {/*<p>What they are saying about us</p>*/}
-            </div>
-
+   
             <div className="container">
+                <div className="section-heading d-flex align-items-center gap-3">
+                    <h4>TESTIMONIALS</h4>
+                    <div className="line"></div>
+                </div>
+
                 <Swiper
                     modules={[Autoplay, Pagination]}
                     loop={true}
                     autoplay={{ delay: 5000 }}
                     speed={600}
-                    slidesPerView="auto"
                     pagination={{ clickable: true }}
                     breakpoints={{
-                        320: { slidesPerView: 1, spaceBetween: 40 },
-                        1200: { slidesPerView: 3, spaceBetween: 10 },
+                        320: { slidesPerView: 1, spaceBetween: 30 },
+                        768: { slidesPerView: 2, spaceBetween: 20 },
+                        1200: { slidesPerView: 3, spaceBetween: 20 },
                     }}
                     className="testimonial-swiper"
                 >
                     {testimonials.map((item, index) => (
                         <SwiperSlide key={index}>
                             <div className="testimonial-item">
-                                <img src={item.image} alt={item.name} className="testimonial-img" />
-                                <h3>{item.name}</h3>
+                                <img src={item.image} alt="testimonial" className="testimonial-img" />
+                                <h3>{item.name || 'Polokwane Surfacing'}</h3>
                                 <h4>{item.title}</h4>
                                 <div className="stars">
                                     {[...Array(5)].map((_, i) => (

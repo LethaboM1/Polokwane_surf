@@ -4,10 +4,10 @@ import missionImg from '../assets/mission.png';
 import teamImg from '../assets/team.png';
 import socialImg from '../assets/social.png';
 
-import con1 from '../assets/con1.jpg';
-import con2 from '../assets/con2.jpg';
-import con3 from '../assets/con3.jpg';
-import con4 from '../assets/con4.jpg';
+import con1 from '../assets/mis.png';
+import con2 from '../assets/vi.png';
+import con3 from '../assets/16.jpg';
+import con4 from '../assets/response.png';
 import '../App.css';
 
 const features = [
@@ -16,11 +16,10 @@ const features = [
         icon: visionImg,
         title: 'Our Vision',
         content: {
-            heading: 'Client-Centric Excellence',
-            text: 'To achieve its defined vision, the management of Polokwane Surfacing will place the delivery of prompt service and good quality workmanship at its highest priority, thereby ensuring client satisfaction and continued growth.',
+            text: `To achieve its defined vision the management of Polokwane Surfacing (Pty) Ltd will place the delivery of prompt service and good quality workmanship as its highest priority, thereby ensuring client satisfaction and continued growth.`,
             bullets: [
-                'Prompt service delivery',
-                'Good quality workmanship',
+                'Delivery of prompt service',
+                'Commitment to good quality workmanship',
                 'Ensuring client satisfaction and growth',
             ],
             image: con1,
@@ -31,13 +30,12 @@ const features = [
         icon: missionImg,
         title: 'Mission Statement',
         content: {
-            heading: 'Leadership in Asphalt and Surfacing',
-            text: 'To maximise our CAPACITY as leading asphalt suppliers and specialist surfacing services by innovative growth strategies which are sustainable and designed to ensure quality workmanship through effective LEADERSHIP and a commitment to COMPLIANCE, giving us the freedom to remain flexible in our approach.',
+            text: `To maximise our CAPACITY as leading asphalt suppliers and specialist surfacing services by innovative growth strategies which are sustainable and designed to ensure quality workmanship through effective LEADERSHIP and a commitment to COMPLIANCE, giving us the freedom to remain flexible in our approach.`,
             bullets: [
-                'Maximise capacity as industry leaders',
-                'Sustainable and innovative growth strategies',
-                'Leadership and compliance-driven delivery',
-                'Flexibility in meeting client needs',
+                'Maximise capacity as leading asphalt suppliers',
+                'Innovative and sustainable growth strategies',
+                'Ensure quality workmanship through leadership',
+                'Commitment to compliance and flexibility',
             ],
             image: con2,
         },
@@ -47,12 +45,11 @@ const features = [
         icon: teamImg,
         title: 'Management Team',
         content: {
-            heading: 'Investing in Talent',
-            text: 'Talent identification has always been and continues to be a very important aspect of Polokwane Surfacing`s recruitment strategy. Our Management Development Programme was launched with the aim of developing our management in various aspects of construction management. As the Company has expanded, more opportunities have arisen, creating the ideal opportunity for individuals to grow with the group. This is an ongoing process and will continue to be mutually beneficial to the Company and staff.',
+            text: `Talent identification has always been and continues to be a very important aspect of Polokwane Surfacings' recruitment strategy. Our Management Development Programme was launched with the aim of developing our management in various aspects of construction management. As the Company has expanded, more opportunities have arisen, creating the ideal opportunity for individuals to grow with the group. This is an ongoing process and will continue to be mutually beneficial to the Company and staff.`,
             bullets: [
-                'Ongoing talent identification and development',
-                'Management Development Programme in place',
-                'Growth opportunities within the company',
+                'Strategic talent identification and recruitment',
+                'Management Development Programme launched',
+                'Career growth within the expanding company',
             ],
             image: con3,
         },
@@ -62,18 +59,17 @@ const features = [
         icon: socialImg,
         title: 'Social Responsibility',
         content: {
-            heading: 'Community & Industry Empowerment',
-            text: 'Polokwane Surfacing has been proactive in developing entrepreneurs in the Civil Engineering field. Black staff members with particular skills were identified and mentored to become independent contractors. With this mentoring, administrative assistance and financial support, these contractors are currently running successful businesses and offer their services to the industry at large.\n\nWe are committed to the development and upliftment of the communities within the areas of our operations. Annually various projects are undertaken to fulfil our commitment to this cause.\n\nTraining and education is important to us, we thus have successful training and bursary schemes in place for our employees and students studying towards a qualification within the Construction Industry.\n\nIn pursuit of our strategic goal to be the preferred employer, an active Employee Wellness Programme is available to provide support to our employees.',
+            text: `Enterprise Development Training and Education\nSocial Economic Development\nEmployee Wellness Programme`,
             bullets: [
-                'Mentorship for black-owned contractor development',
-                'Annual community development projects',
-                'Employee and student training and bursaries',
+                'Enterprise Development Training and Education',
+                'Social Economic Development initiatives',
                 'Active Employee Wellness Programme',
             ],
             image: con4,
         },
     },
 ];
+
 
 
 const Features = () => {

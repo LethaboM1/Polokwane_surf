@@ -1,13 +1,25 @@
-﻿namespace Polokwane_surf.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace Polokwane_surf.Server.Models
 {
     public class ContactForm
     {
-            public string Name { get; set; }
-            public string PhoneNumber { get; set; }
-            public string Email { get; set; }
-            public string Subject { get; set; }
-            public string Message { get; set; }
+        [JsonPropertyName("name")]
+        public required string Name { get; set; }
 
+        [JsonPropertyName("mobileNumber")]
+        public required string MobileNumber { get; set; }
+
+        [EmailAddress]
+        [JsonPropertyName("email")]
+        public required string Email { get; set; }
+
+        [JsonPropertyName("subject")]
+        public required string Subject { get; set; }
+
+        [JsonPropertyName("message")]
+        public required string Message { get; set; }
     }
 
 }

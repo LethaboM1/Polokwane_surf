@@ -1,30 +1,49 @@
 import React, { useState } from 'react';
-import img1 from '../assets/1.jpg';
-import img2 from '../assets/9.jpg';
-import img3 from '../assets/11.jpg';
-import img4 from '../assets/4.jpg';
+import img2 from '../assets/9.jpg'; //main roads
 import img5 from '../assets/8.jpg';
-import video1 from '../assets/move1.mp4';
+
+import img6 from '../assets/10.jpg'; //machines
+import img9 from '../assets/14.jpg';
+import img10 from '../assets/15.jpg';
+import img13 from '../assets/18.jpg';
+import img14 from '../assets/19.jpg';
+import img15 from '../assets/5.jpg';
+
+import video1 from '../assets/move1.mp4'; //working
 import video2 from '../assets/move.mp4';
 import video3 from '../assets/move2.mp4';
 import video4 from '../assets/move3.mp4';
 
 import '../App.css';
 
+// Internal categories and professional display labels
+const categoryLabels = {
+    'road-infrastructure': 'Road Infrastructure',
+    'residential-access': 'Residential Access Roads',
+    'surface-finishing': 'Asphalt & Surface Finishes',
+};
+
+// Gallery items with correct categories
 const galleryData = [
-    { id: 1, category: 'roads', title: 'Main Road Upgrade', image: img1 },
-    { id: 2, category: 'driveways', title: 'Luxury Driveway', image: img2 },
-    { id: 3, category: 'driveway', title: 'Drive', image: img3 },
-    { id: 4, category: 'roads', title: 'Rural Road Surfacing', image: img4 },
-    { id: 5, category: 'driveways', title: 'Residential Access Way', image: img5 },
-    { id: 6, category: 'driveways', title: 'Access Way', image: img5 },
-    { id: 7, category: 'paving', title: 'Paving', image: video1 },
-    { id: 8, category: 'paving', title: 'Commercial Paving', image: video2 },
-    { id: 9, category: 'paving', title: 'Commercial Paving', image: video3 },
-    { id: 10, category: 'paving', title: 'Commercial Paving', image: video4 },
+    //{ id: 1, category: 'road-infrastructure', title: 'Main Road Upgrade', image: img1 },
+    { id: 9, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img2 },
+    { id: 3, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img14 },
+    { id: 4, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img13 },
+    { id: 7, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img15 },
+
+    { id: 8, category: 'residential-access', title: 'Residential Access Way', image: img5 },
+    { id: 12, category: 'residential-access', title: 'Residential Access Way', image: img9 },
+    { id: 13, category: 'residential-access', title: 'Residential Access Way', image: img10 },
+    { id: 15, category: 'residential-access', title: 'Residential Access Way', image: img6 },
+
+    { id: 17, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video1 },
+    { id: 18, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video2 },
+    { id: 19, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video3 },
+    { id: 20, category: 'surface-finishing', title: 'Bitumen Application', image: video4 },
 ];
 
-const filters = ['All', 'Roads', 'Driveways', 'Paving'];
+// Generate filters based on categories (All + mapped display names)
+const filters = ['All', ...Object.values(categoryLabels)];
 
 const Gallery = () => {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -33,59 +52,57 @@ const Gallery = () => {
         setActiveFilter(filter);
     };
 
+    // Filter logic
     const filteredData =
         activeFilter === 'All'
             ? galleryData
-            : galleryData.filter((item) => item.category === activeFilter.toLowerCase());
+            : galleryData.filter(
+                (item) => categoryLabels[item.category] === activeFilter
+            );
 
     return (
+        <section id="gallery" className="gallery-section">
+    
+            <div className="container">
+                <div className="row gy-3">
+                    <div className="section-heading d-flex align-items-center gap-3">
+                        <h4>GALLERY</h4>
+                        <div className="line"></div>
+                    </div>
 
-            <section id="gallery" className="gallery-section">
-                <div className="section-heading d-flex align-items-center gap-3">
-                    <h4>GALLERY</h4>
-                    <div className="line"></div>
-                </div>
+                    <ul className="gallery-filters">
+                        {filters.map((filter) => (
+                            <li
+                                key={filter}
+                                className={filter === activeFilter ? 'filter-active' : ''}
+                                onClick={() => handleFilterClick(filter)}
+                            >
+                                {filter}
+                            </li>
+                        ))}
+                    </ul>
 
-                <div className="container">
-                    <div className="row gy-4">
-                        <ul className="gallery-filters">
-                            {filters.map((filter) => (
-                                <li
-                                    key={filter}
-                                    className={filter === activeFilter ? 'filter-active' : ''}
-                                    onClick={() => handleFilterClick(filter)}
-                                >
-                                    {filter}
-                                </li>
-                            ))}
-                        </ul>
-
-                        <div className="gallery-grid">
-                            {filteredData.map((item) => (
-                                <div className={`gallery-item ${item.category}`} key={item.id}>
-                                    {item.image.endsWith('.mp4') ? (
-                                        <video className="gallery-img" controls>
-                                            <source src={item.image} type="video/mp4" />
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    ) : (
-                                        <img src={item.image} alt={item.title} className="gallery-img" />
-                                    )}
-                                    <div className="gallery-info">
-                                        <h4>{item.title}</h4>
-                                        <p>{item.category}</p>
-                                        <div className="gallery-links">
-                                            <a href={item.image} className="preview-link" title={item.title}>
-                                                <i className="bi bi-zoom-in"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                    <div className="gallery-grid">
+                        {filteredData.map((item) => (
+                            <div className={`gallery-item ${item.category}`} key={item.id}>
+                                {item.image.endsWith('.mp4') ? (
+                                    <video className="gallery-img" controls>
+                                        <source src={item.image} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                ) : (
+                                    <img src={item.image} alt={item.title} className="gallery-img" />
+                                )}
+                                <div className="gallery-info">
+                                    <h4>{item.title}</h4>
+                                    <p>{categoryLabels[item.category]}</p>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
     );
 };
 

@@ -5,106 +5,124 @@ import industry from '../assets/industry.png';
 import affli from '../assets/affli.png';
 import '../App.css';
 
-const services = [
-    {
-        icon: brief,
-        title: 'NATURE OF BUSINESS',
-        content: (
-            <div className="text-start">
-                <p>Our products and services include the manufacturing, supply and application of:</p>
-                <ul className="mt-2">
-                    <li>Various grades of hot mix asphalt including UTFC</li>
-                    <li>ETB (Emulsion Treated Base)</li>
-                    <li>Modified bituminous bases</li>
-                    <li>Bitumen prime coats</li>
-                    <li>Bitumen emulsions</li>
-                </ul>
-            </div>
-        ),
-    },
-    {
-        icon: truck,
-        title: 'PLANT & EQUIPMENT',
-        isExpandable: true,
-        shortContent: (
-            <div className="text-start">
-                <p>
-                    Our company owns an extensive fleet of plant and equipment including asphalt mixing plants,
-                    pavers, shuttle buggys, rollers, chip spreaders, and more.
-                </p>
-            </div>
-        ),
-        fullContent: (
-            <div className="text-start">
-                <p>
-                    To provide a one-stop service, our Company owns an extensive fleet of plant and equipment.
-                    This includes asphalt mixing plants, pavers, shuttle buggys, rollers, chip spreaders,
-                    bitumen distributors, milling machines, recyclers, and mechanical brooms.
-                </p>
-                <p className="mt-2">
-                    Our static asphalt plants are situated in:
-                </p>
-                <ul>
-                    <li>Polokwane (Limpopo Province)</li>
-                    <li>Hazyview (Mpumalanga Province)</li>
-                    <li>2 mobile asphalt plants for remote sites</li>
-                </ul>
-                <p className="mt-2">
-                    By following a strict plant replacement program, we keep our fleet modern.
-                    Maintaining our equipment to a high standard, along with skilled and experienced drivers
-                    and operators, ensures quality workmanship and productivity.
-                </p>
-            </div>
-        ),
-    },
-    {
-        icon: industry,
-        title: 'INDUSTRY STANDARDS',
-        content: (
-            <div className="text-start">
-                <p>We operate under:</p>
-                <ul className="mt-2">
-                    <li>COLTO and SACTCC Standard Specifications for Road and Bridge Works</li>
-                    <li>SANS (South African Standards)</li>
-                    <li>OSHACT 18001</li>
-                    <li>ISO 9001</li>
-                    <li>VARIOUS SABETA</li>
-                </ul>
-            </div>
-        ),
-    },
-    {
-        icon: affli,
-        title: 'AFFILIATIONS',
-        content: (
-            <div className="text-start">
-                <p>We are proudly affiliated with:</p>
-                <ul className="mt-2">
-                    <li>BSI Quality Management System ISO 9001</li>
-                    <li>CETA</li>
-                    <li>MERSETA</li>
-                    <li>SA ROAD FEDERATION</li>
-                    <li>SABITA</li>
-                    <li>Society of Asphalt Technology (SAT)</li>
-                    <li>Care Ways</li>
-                </ul>
-            </div>
-        ),
-    },
-];
-
 const Services = () => {
-    const [expanded, setExpanded] = useState(false);
+    const [expandedIndex, setExpandedIndex] = useState(null);
+
+    const toggleExpand = (index) => {
+        setExpandedIndex(expandedIndex === index ? null : index);
+    };
+
+    const services = [
+        {
+            icon: brief,
+            title: 'NATURE OF BUSINESS',
+            content: (
+                <div className="text-start">
+                    <p>Our products and services include the manufacturing, supply and application of:</p>
+                    <div className="col-md-6">
+                        <ul className="list-unstyled">
+                            <li><i className="bi bi-check2-circle green-check"></i> Various grades of hot mix asphalt including Ultra-Thin Friction Course (UTFC)</li>
+                            <li><i className="bi bi-check2-circle green-check"></i> ETB (Emulsion Treated Base)</li>
+                            <li><i className="bi bi-check2-circle green-check"></i> Modified bituminous bases</li>
+                            <li><i className="bi bi-check2-circle green-check"></i> Bitumen prime coats</li>
+                            <li><i className="bi bi-check2-circle green-check"></i> Bitumen emulsions</li>
+                    </ul>
+                    </div>
+                </div>
+            ),
+        },
+        {
+            icon: truck,
+            title: 'PLANT & EQUIPMENT',
+            isExpandable: true,
+            shortContent: (
+                <div className="text-start">
+                    <p>
+                        To provide a one stop service, our Company owns an extensive fleet of plant and equipment. This includes:
+                    </p>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <ul className="list-unstyled">
+                                <li><i className="bi bi-check2-circle green-check"></i> Asphalt mixing plants</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Pavers</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Shuttle buggys</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Rollers</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Chip spreaders</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-6">
+                            <ul className="list-unstyled">
+                                <li><i className="bi bi-check2-circle green-check"></i> Bitumen distributors</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Milling machines</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Recyclers</li>
+                                <li><i className="bi bi-check2-circle green-check"></i> Mechanical brooms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            ),
+            fullContent: (
+                <div className="text-start">
+                    <p>
+                        Our static asphalt plants are situated in Polokwane in the Limpopo Province and Hazyview in the Mpumalanga Province,
+                        with another two mobile asphalt plants being available for remote sites.
+                    </p>
+                    <p>
+                        By following a strict plant replacement program, we keep our fleet modern. Maintaining our equipment to a high standard,
+                        along with skilled and experienced drivers and operators, ensures quality workmanship and productivity.
+                    </p>
+                </div>
+            ),
+        },
+
+        {
+            icon: industry,
+            title: 'INDUSTRY STANDARDS',
+            content: (
+                <div className="text-start">
+                    <p>We operate under:</p>
+                    <div className="col-md-6">
+                        <ul className="list-unstyled">
+                            <li><i className="bi bi-check2-circle green-check"></i>COLTO and SACTCC Standard Specifications for Road and Bridge Works</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>SANS (SA National Standards)</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>OSHACT 18001</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>ISO 9001</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>VARIOUS SABETA</li>
+                    </ul>
+                    </div>
+                </div>
+            ),
+        },
+        {
+            icon: affli,
+            title: 'AFFILIATIONS',
+            content: (
+                <div className="text-start">
+                    <p>We are proudly affiliated with:</p>
+                    <div className="col-md-6">
+                        <ul className="list-unstyled">
+                            <li><i className="bi bi-check2-circle green-check"></i>BSI Quality Management System ISO 9001</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>CETA</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>MERSETA</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>SA ROAD FEDERATION</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>SABITA</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>Society of Asphalt Technology (SAT)</li>
+                    </ul>
+                    </div>
+                </div>
+            ),
+        },
+    ];
 
     return (
         <section id="services" className="services section">
-            <div className="section-heading d-flex align-items-center gap-3">
-                <h4>SERVICES</h4>
-                <div className="line"></div>
-            </div>
-
             <div className="container">
-                <div className="row gy-4">
+                <div className="row gy-3">
+                    <div className="section-heading d-flex align-items-center gap-3">
+                        <h4>SERVICES</h4>
+                        <div className="line"></div>
+                    </div>
+
                     {services.map((service, index) => (
                         <div className="col-lg-6 col-md-12 d-flex" key={index}>
                             <div className="service-card p-4 shadow rounded bg-white h-100 w-100 d-flex flex-column">
@@ -116,12 +134,12 @@ const Services = () => {
                                 <div className="text-start flex-grow-1">
                                     {service.isExpandable ? (
                                         <>
-                                            {expanded ? service.fullContent : service.shortContent}
+                                            {expandedIndex === index ? service.fullContent : service.shortContent}
                                             <button
                                                 className="btn btn-link text-success p-0 mt-2"
-                                                onClick={() => setExpanded(!expanded)}
+                                                onClick={() => toggleExpand(index)}
                                             >
-                                                {expanded ? 'Read Less' : 'Read More'}
+                                                {expandedIndex === index ? 'Read Less' : 'Read More'}
                                             </button>
                                         </>
                                     ) : (

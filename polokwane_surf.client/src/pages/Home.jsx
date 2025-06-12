@@ -8,8 +8,8 @@ import Portfolio from './Portfolio';
 import Testimonial from './Testimonial';
 import Services from './Services';
 import Gallery from './Gallery';
-import Careers from './Documents';
-import Documents from './Careers';
+//import Documents from './Documents';
+import Chatbot from './Chatbot';
 //import ClientSurvey from './Survey';
 import Contact from './Contact';
 import ScrollToTop from '../components/ScrollToTop';
@@ -32,6 +32,8 @@ const Home = () => {
             <Testimonial />
             <Contact />
             <ScrollToTop />
+            {/* Chatbot floats at bottom right */}
+            <Chatbot />
         </main>
     );
 };

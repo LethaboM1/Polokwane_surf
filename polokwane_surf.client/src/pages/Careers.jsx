@@ -38,12 +38,13 @@ const Careers = () => {
             <CarouselSection />
 
             <section id="careers" className="section careers">
-                <div className="section-heading d-flex align-items-center gap-3">
-                    <h4>CAREERS</h4>
-                    <div className="line"></div>
-                </div>
-
+              
                 <div className="container">
+                    <div className="section-heading d-flex align-items-center gap-3">
+                        <h4>CAREERS</h4>
+                        <div className="line"></div>
+                    </div>
+
                     {vacancies.length === 0 ? (
                         <div className="alert alert-info text-center p-4 shadow rounded">
                             <h5 className="mb-2 text-success">No Vacancies Available</h5>

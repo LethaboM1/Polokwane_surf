@@ -1,66 +1,7 @@
-﻿
-//    using Microsoft.AspNetCore.Mvc;
-//    using Polokwane_surf.Server.Model;
-//    using Polokwane_surf.Server.Services;
-
-//namespace Polokwane_surf.Server.Controllers
-//{
-//    [ApiController]
-//        [Route("api/[controller]")]
-//        public class ContactController : ControllerBase
-//        {
-//            private readonly EmailService _emailService;
-//            //private readonly SmsService _smsService;
-
-//            public ContactController(EmailService emailService)
-//            {
-//                _emailService = emailService;
-//                //_smsService = smsService;
-//            }
-
-//        [HttpPost("submit")]
-//        public async Task<IActionResult> SendContactForm([FromBody] ContactForm form)
-//        {
-//            try
-//            {
-//                Console.WriteLine($"Received ContactForm: Name={form.Name}, Email={form.Email}, Subject={form.Subject}, Phone={form.PhoneNumber}, Message={form.Message}");
-
-//                var emailBody = $@"
-//            <h2>New Contact Form Submission</h2>
-//            <p><strong>Name:</strong> {form.Name}</p>
-//            <p><strong>Email:</strong> {form.Email}</p>
-//            <p><strong>Phone Number:</strong> {form.PhoneNumber}</p>
-//            <p><strong>Subject:</strong> {form.Subject}</p>
-//            <p><strong>Message:</strong><br/>{form.Message}</p>";
-
-//                try
-//                {
-//                    Console.WriteLine("Attempting to send email...");
-//                    await _emailService.SendEmailAsync("admin@polokwanesurfacing.co.za", form.Subject, emailBody);
-//                    Console.WriteLine("Email sent successfully.");
-//                }
-//                catch (Exception ex)
-//                {
-//                    Console.WriteLine($"Email sending failed: {ex.Message}");
-//                    throw;
-//                }
-
-//                return Ok(new { success = true, message = "Message sent successfully!" });
-//            }
-//            catch (Exception ex)
-//            {
-//                Console.WriteLine($"[CONTACT ERROR] {ex.ToString()}");
-//                return StatusCode(500, new { success = false, message = "Failed to send message. Please try again later." });
-//            }
-//        }
-
-
-//    }
-//}
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Polokwane_surf.Server.Models;
 using Polokwane_surf.Server.Services;
+using System.Net;
 
 namespace Polokwane_surf.Server.Controllers
 {
@@ -77,40 +18,66 @@ namespace Polokwane_surf.Server.Controllers
             // _smsService = smsService;
         }
 
+
         [HttpPost("submit")]
-        public async Task<IActionResult> SendContactForm([FromBody] ContactForm form)
+        public async Task<IActionResult> SubmitContactForm([FromBody] ContactForm model)
         {
             try
             {
-                Console.WriteLine($"Received ContactForm: Name={form.Name}, Email={form.Email}, Subject={form.Subject}, Phone={form.PhoneNumber}, Message={form.Message}");
-
-                var emailBody = $@"
-                <h2>New Contact Form Submission</h2>
-                <p><strong>Name:</strong> {form.Name}</p>
-                <p><strong>Email:</strong> {form.Email}</p>
-                <p><strong>Phone Number:</strong> {form.PhoneNumber}</p>
-                <p><strong>Subject:</strong> {form.Subject}</p>
-                <p><strong>Message:</strong><br/>{form.Message}</p>";
-
-                try
-                {
-                    Console.WriteLine("Attempting to send email...");
-                    await _emailService.SendEmailAsync("admin@polokwanesurfacing.co.za", form.Subject, emailBody);
-                    Console.WriteLine("Email sent successfully.");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Email sending failed: {ex.Message}");
-                    throw;
-                }
-
-                return Ok(new { success = true, message = "Message sent successfully!" });
+                await _emailService.SendContactEmailAsync(model.Name, model.Email, model.MobileNumber, model.Message);
+                return Ok("Email sent successfully.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[CONTACT ERROR] {ex}");
-                return StatusCode(500, new { success = false, message = "Failed to send message. Please try again later." });
+                return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("test-email")]
+        public async Task<IActionResult> TestEmail()
+        {
+            try
+            {
+                string name = "Test User";
+                string message = "This is a test message.\nIt has multiple lines.";
+
+                string bodyToUser = $@"
+            <html>
+              <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>
+                <div style='max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);'>
+                  <div style='text-align: center;'>
+                    <img src='../assets/images/logo.png' alt='Polokwane Surfacing Logo' style='width: 160px; margin-bottom: 20px;' />
+                  </div>
+                  <h2 style='color: #2c3e50;'>Thank You, {WebUtility.HtmlEncode(name)}</h2>
+                  <p style='font-size: 16px; color: #333;'>
+                    We have received your message and will get back to you shortly.
+                  </p>
+                  <p style='font-size: 16px; color: #333;'>
+                    <strong>Your Message:</strong><br />
+                    {WebUtility.HtmlEncode(message).Replace("\n", "<br />")}
+                  </p>
+                  <p style='margin-top: 30px; font-size: 14px; color: #555;'>
+                    Kind regards,<br />
+                    <strong>Polokwane Surfacing Team</strong><br />
+                    <a href='https://polokwanesurfacing.co.za' target='_blank' style='color: #27ae60;'>www.polokwanesurfacing.co.za</a>
+      </p>
+    </div>
+  </body>
+</html>";
+
+                await _emailService.SendEmailAsync(
+                    "test@gmail.com",
+                    "Polokwane Surfacing - Test Email",
+                    bodyToUser
+                );
+
+                return Ok("Email sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }
