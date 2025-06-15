@@ -17,12 +17,35 @@ const ClientSurvey = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    //const handleSubmit = (e) => {
+    //    e.preventDefault();
+    //    console.log('Submitted data:', formData);
+    //    alert("Thank you for your feedback!");
+    //    setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
+    //};
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submitted data:', formData);
-        alert("Thank you for your feedback!");
-        setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
+
+        try {
+            const response = await fetch('https://localhost:7059/api/survey/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert("Thank you for your feedback!");
+                setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
+            } else {
+                alert("Failed to submit survey. Please try again later.");
+            }
+        } catch (error) {
+            console.error("Survey submission error:", error);
+            alert("An error occurred. Please try again.");
+        }
     };
+
+
 
     return (
         <>

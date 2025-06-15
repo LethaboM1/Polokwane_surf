@@ -8,6 +8,11 @@ import test2 from '../assets/test2.jpg';
 import test3 from '../assets/2.jpg';
 import test4 from '../assets/3.jpg';
 import test5 from '../assets/4.jpg';
+import test6 from '../assets/4.jpg';
+import test7 from '../assets/4.jpg';
+import test8 from '../assets/4.jpg';
+import test9 from '../assets/4.jpg';
+import test10 from '../assets/4.jpg';
 import '../App.css';
 
 const testimonials = [
@@ -44,8 +49,41 @@ const testimonials = [
         title: 'Community Representative',
         feedback: 'Our community benefited greatly from their infrastructure upgrades. The team was respectful, efficient, and committed to excellence.',
         image: test5,
+    },
+    {
+        name: 'Site Supervisor',
+        title: 'On-Site Testimonial',
+        feedback: 'Working with Polokwane Surfacing has been a smooth experience. Their team adheres to safety and quality standards rigorously.',
+        image: test6,
+    },
+    {
+        date: 'Nov 25, 2020',
+        title: 'Youth Development Programme',
+        feedback: 'Polokwane Surfacing sponsored equipment and training workshops to empower unemployed youth in the Capricorn District.',
+        image: test7,
+        name: 'Polokwane Surfacing',
+    },
+    {
+        name: 'Local Contractor',
+        title: 'Small Business Partner',
+        feedback: 'Their subcontractor support helped grow my business. They are transparent, fair, and always meet deadlines.',
+        image: test8,
+    },
+    {
+        date: 'Sep 15, 2021',
+        title: 'Road Safety Awareness Campaign',
+        feedback: 'We joined Polokwane Surfacing’s road safety initiative in rural Limpopo, educating school children and motorists alike.',
+        image: test9,
+        name: 'Polokwane Surfacing',
+    },
+    {
+        name: 'Training Participant',
+        title: 'Skills Development Beneficiary',
+        feedback: 'Thanks to their training programs, I gained skills that helped me find employment in the construction industry.',
+        image: test10,
     }
 ];
+
 
 const Testimonials = () => {
     return (

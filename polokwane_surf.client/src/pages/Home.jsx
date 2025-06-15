@@ -9,7 +9,7 @@ import Testimonial from './Testimonial';
 import Services from './Services';
 import Gallery from './Gallery';
 //import Documents from './Documents';
-import Chatbot from './Chatbot';
+//import Chatbot from './Chatbot';
 //import ClientSurvey from './Survey';
 import Contact from './Contact';
 import ScrollToTop from '../components/ScrollToTop';
@@ -33,7 +33,7 @@ const Home = () => {
             <Contact />
             <ScrollToTop />
             {/* Chatbot floats at bottom right */}
-            <Chatbot />
+            {/*<Chatbot />*/}
         </main>
     );
 };

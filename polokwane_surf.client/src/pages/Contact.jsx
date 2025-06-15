@@ -94,7 +94,7 @@ const Contact = () => {
                                 <div>
                                     <strong>Head Office Address:</strong><br />
                                     9 Yster Street, Ladine, Polokwane, 0699<br />
-                                    <strong>Tel:</strong> 015 293 0736
+                                    <strong>Tel:</strong> 015 293 1221
                                 </div>
                             </div>
 

@@ -44,7 +44,7 @@ public class EmailService
     }
 
 
-    public async Task SendContactEmailAsync(string name, string email, string mobileNumber, string message)
+    public async Task SendContactEmailAsync(string name, string email, string phoneNumber, string message)
     {
         // ✅ Validate email address format
         if (string.IsNullOrWhiteSpace(email) || !MailAddress.TryCreate(email, out _))
@@ -67,7 +67,7 @@ public class EmailService
           <table style='width: 100%; font-size: 16px; color: #333; border-spacing: 0 10px;'>
             <tr><td style='font-weight: bold;'>Name:</td><td>{WebUtility.HtmlEncode(name)}</td></tr>
             <tr><td style='font-weight: bold;'>Email:</td><td>{WebUtility.HtmlEncode(email)}</td></tr>
-            <tr><td style='font-weight: bold;'>Mobile Number:</td><td>{WebUtility.HtmlEncode(mobileNumber)}</td></tr>
+            <tr><td style='font-weight: bold;'>Mobile Number:</td><td>{WebUtility.HtmlEncode(phoneNumber)}</td></tr>
             <tr><td style='font-weight: bold; vertical-align: top;'>Message:</td><td>{WebUtility.HtmlEncode(message).Replace("\n", "<br />")}</td></tr>
           </table>
           <p style='margin-top: 30px; font-size: 14px; color: #555;'>

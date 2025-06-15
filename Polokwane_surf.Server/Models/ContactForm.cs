@@ -8,8 +8,8 @@ namespace Polokwane_surf.Server.Models
         [JsonPropertyName("name")]
         public required string Name { get; set; }
 
-        [JsonPropertyName("mobileNumber")]
-        public required string MobileNumber { get; set; }
+        [JsonPropertyName("phoneNumber")]
+        public required string PhoneNumber { get; set; }
 
         [EmailAddress]
         [JsonPropertyName("email")]

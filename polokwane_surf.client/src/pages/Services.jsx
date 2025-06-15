@@ -26,6 +26,7 @@ const Services = () => {
                             <li><i className="bi bi-check2-circle green-check"></i> Modified bituminous bases</li>
                             <li><i className="bi bi-check2-circle green-check"></i> Bitumen prime coats</li>
                             <li><i className="bi bi-check2-circle green-check"></i> Bitumen emulsions</li>
+                            <li><i className="bi bi-check2-circle green-check"></i> Cold Mix Asphalt</li>
                     </ul>
                     </div>
                 </div>
@@ -56,6 +57,8 @@ const Services = () => {
                                 <li><i className="bi bi-check2-circle green-check"></i> Milling machines</li>
                                 <li><i className="bi bi-check2-circle green-check"></i> Recyclers</li>
                                 <li><i className="bi bi-check2-circle green-check"></i> Mechanical brooms</li>
+                                {/*It carries slurry, a mixture of water and solids (like cement, asphalt, or other materials) used in paving, roadwork, or construction.*/}
+                                <li><i className="bi bi-check2-circle green-check"></i> Slurry Truck</li> 
                             </ul>
                         </div>
                     </div>
@@ -83,7 +86,7 @@ const Services = () => {
                     <p>We operate under:</p>
                     <div className="col-md-6">
                         <ul className="list-unstyled">
-                            <li><i className="bi bi-check2-circle green-check"></i>COLTO and SACTCC Standard Specifications for Road and Bridge Works</li>
+                            <li><i className="bi bi-check2-circle green-check"></i>COTO and SACTCC Standard Specifications for Road and Bridge Works</li>
                             <li><i className="bi bi-check2-circle green-check"></i>SANS (SA National Standards)</li>
                             <li><i className="bi bi-check2-circle green-check"></i>OSHACT 18001</li>
                             <li><i className="bi bi-check2-circle green-check"></i>ISO 9001</li>

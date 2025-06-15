@@ -4,21 +4,13 @@ import CarouselSection from "../components/CarouselSection";
 import careerIcon from '../assets/careers.png';
 import '../App.css';
 
-const vacancies = [
+const careers = [
     {
         title: 'Lab Tester',
         location: 'Polokwane, Limpopo',
         type: 'Full-Time',
         description: 'Conduct laboratory tests on materials to ensure compliance with project specifications.',
         applicationForm: '/pdf/posts.pdf',
-        applyOnline: false,
-    },
-    {
-        title: 'Operator',
-        location: 'Polokwane, Limpopo',
-        type: 'Full-Time',
-        description: 'Operate heavy machinery such as rollers, excavators, and graders on construction sites.',
-        applicationForm: '/documents/operator-application.pdf',
         applyOnline: false,
     },
     {
@@ -45,14 +37,14 @@ const Careers = () => {
                         <div className="line"></div>
                     </div>
 
-                    {vacancies.length === 0 ? (
+                    {careers.length === 0 ? (
                         <div className="alert alert-info text-center p-4 shadow rounded">
                             <h5 className="mb-2 text-success">No Vacancies Available</h5>
                             <p>Thank you for your interest. Please check back later or follow us for updates.</p>
                         </div>
                     ) : (
                         <div className="row gy-4">
-                            {vacancies.map((job, index) => (
+                            {careers.map((job, index) => (
                                 <div className="col-lg-4 col-md-6 d-flex" key={index}>
                                     <div className="career-card p-4 shadow rounded bg-white h-100 w-100 d-flex flex-column justify-content-between">
                                         <div className="d-flex align-items-center gap-3 mb-3">

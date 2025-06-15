@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import CarouselSection from "../components/CarouselSection";
-import pdfIcon from '../assets/company.png'; 
+import pdfIcon from '../assets/company.png';
 import Icon from '../assets/document.png';
 import Icon1 from '../assets/docu.png';
 import Icon2 from '../assets/docuu.png';
@@ -23,7 +23,7 @@ const documents = [
     {
         title: 'ISO Certification',
         description: 'Proof of ISO 9001 certification.',
-        file: '/pdf/CIDB',
+        file: '/pdf/CIDB.pdf',
         icon: Icon1,
     },
     {
@@ -34,20 +34,19 @@ const documents = [
     },
 ];
 
-
 const Documents = () => {
     return (
         <>
             <Header />
             <CarouselSection />
-            <section id="documents" className="section documents mt-4">
-                <div className="section-heading d-flex align-items-center gap-3">
-                    <h4>DOCUMENTS</h4>
-                    <div className="line"></div>
-                </div>
+            <section id="documents" className="documents section mt-4">
+                <div className="container">
+                    <div className="row gy-3">
+                        <div className="section-heading d-flex align-items-center gap-3">
+                            <h4>DOCUMENTS</h4>
+                            <div className="line"></div>
+                        </div>
 
-                <div className="container-fluid px-4">
-                    <div className="row gy-4">
                         {documents.map((doc, index) => (
                             <div className="col-lg-4 col-md-6 d-flex" key={index}>
                                 <div className="document-card p-4 shadow rounded bg-white h-100 w-100 d-flex flex-column justify-content-between">

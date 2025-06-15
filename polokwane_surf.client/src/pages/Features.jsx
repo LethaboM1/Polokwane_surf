@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import visionImg from '../assets/vision.png';
 import missionImg from '../assets/mission.png';
-import teamImg from '../assets/team.png';
-import socialImg from '../assets/social.png';
+import teamImg from '../assets/team2.png';
+import socialImg from '../assets/socials.jpg';
 
 import con1 from '../assets/mis.png';
 import con2 from '../assets/vi.png';
@@ -57,7 +57,7 @@ const features = [
     {
         id: 4,
         icon: socialImg,
-        title: 'Social Responsibility',
+        title: 'Business Responsibility',
         content: {
             text: `Enterprise Development Training and Education\nSocial Economic Development\nEmployee Wellness Programme`,
             bullets: [
@@ -69,8 +69,6 @@ const features = [
         },
     },
 ];
-
-
 
 const Features = () => {
     const [activeTab, setActiveTab] = useState(1);

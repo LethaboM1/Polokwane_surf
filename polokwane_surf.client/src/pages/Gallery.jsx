@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import img2 from '../assets/9.jpg'; //main roads
+ //main roads
+import img2 from '../assets/9.jpg';
 import img5 from '../assets/8.jpg';
 
-import img6 from '../assets/10.jpg'; //machines
+import img6 from '../assets/11.jpg'; //machines
 import img9 from '../assets/14.jpg';
 import img10 from '../assets/15.jpg';
 import img13 from '../assets/18.jpg';
@@ -26,20 +27,20 @@ const categoryLabels = {
 // Gallery items with correct categories
 const galleryData = [
     //{ id: 1, category: 'road-infrastructure', title: 'Main Road Upgrade', image: img1 },
-    { id: 9, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img2 },
-    { id: 3, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img14 },
-    { id: 4, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img13 },
-    { id: 7, category: 'road-infrastructure', title: 'Rural Road Surfacing', image: img15 },
+    { id: 1, category: 'road-infrastructure', title: 'Arterial Roads', image: img2 },
+    { id: 2, category: 'road-infrastructure', title: 'Arterial Roads', image: img14 },
+    { id: 3, category: 'road-infrastructure', title: 'Arterial Roads', image: img13 },
+    { id: 4, category: 'road-infrastructure', title: 'Arterial Roads', image: img15 },
 
-    { id: 8, category: 'residential-access', title: 'Residential Access Way', image: img5 },
-    { id: 12, category: 'residential-access', title: 'Residential Access Way', image: img9 },
-    { id: 13, category: 'residential-access', title: 'Residential Access Way', image: img10 },
-    { id: 15, category: 'residential-access', title: 'Residential Access Way', image: img6 },
+    { id: 5, category: 'residential-access', title: 'Pavement Surfacing', image: img5 },
+    { id: 6, category: 'residential-access', title: 'Seal Works', image: img9 },
+    { id: 7, category: 'residential-access', title: 'CAPE Seal', image: img10 },
+    { id: 8, category: 'residential-access', title: 'Milling and Recycling ', image: img6 },
 
-    { id: 17, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video1 },
-    { id: 18, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video2 },
-    { id: 19, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video3 },
-    { id: 20, category: 'surface-finishing', title: 'Bitumen Application', image: video4 },
+    { id: 9, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video1 },
+    { id: 10, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video2 },
+    { id: 11, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video3 },
+    { id: 12, category: 'surface-finishing', title: 'Bitumen Application', image: video4 },
 ];
 
 // Generate filters based on categories (All + mapped display names)
