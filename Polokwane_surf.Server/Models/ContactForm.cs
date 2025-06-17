@@ -5,21 +5,22 @@ namespace Polokwane_surf.Server.Models
 {
     public class ContactForm
     {
-        [JsonPropertyName("name")]
-        public required string Name { get; set; }
+        [Required]
+        public string Name { get; set; }
 
-        [JsonPropertyName("phoneNumber")]
-        public required string PhoneNumber { get; set; }
-
+        [Required]
         [EmailAddress]
-        [JsonPropertyName("email")]
-        public required string Email { get; set; }
+        public string Email { get; set; }
 
-        [JsonPropertyName("subject")]
-        public required string Subject { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
 
-        [JsonPropertyName("message")]
-        public required string Message { get; set; }
+        [Required]
+        public string Subject { get; set; }
+
+        [Required]
+        public string Message { get; set; }
     }
+
 
 }

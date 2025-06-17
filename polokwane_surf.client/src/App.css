@@ -560,6 +560,14 @@ html, body  {
     resize: vertical;
 }
 
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-top: 6px;
+}
+
+
 /* Contact  */
 .contact-section {
     padding: 40px 20px;
@@ -733,12 +741,12 @@ html, body  {
 
 /* Chatbot*/
 /* Chat Toggle Button */
-.chat-toggle-btn {
+/*.chat-toggle-btn {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background-color: #006837; /* Adjust to your brand color */
-    color: white;
+    background-color: #006837;*/ /* Adjust to your brand color */
+    /*color: white;
     border: none;
     border-radius: 50%;
     width: 56px;
@@ -756,10 +764,10 @@ html, body  {
     .chat-toggle-btn:hover {
         background-color: #004d27;
         transform: scale(1.1);
-    }
+    }*/
 
 /* Chat Window */
-.chat-window {
+/*.chat-window {
     position: fixed;
     bottom: 90px;
     right: 24px;
@@ -781,10 +789,10 @@ html, body  {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
-    }
+    }*/
 
 /* Header */
-.chat-header {
+/*.chat-header {
     background-color: #006837;
     color: white;
     padding: 12px 16px;
@@ -792,19 +800,19 @@ html, body  {
     border-top-right-radius: 12px;
     font-weight: bold;
     font-size: 1.1rem;
-}
+}*/
 
 /* Messages Container */
-.chat-messages {
+/*.chat-messages {
     flex: 1;
     padding: 12px 16px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #006837 #e0e0e0;
-}
+}*/
 
     /* Scrollbar styles for webkit */
-    .chat-messages::-webkit-scrollbar {
+    /*.chat-messages::-webkit-scrollbar {
         width: 6px;
     }
 
@@ -838,10 +846,10 @@ html, body  {
         align-self: flex-end;
         justify-content: flex-end;
         border-bottom-right-radius: 4px;
-    }
+    }*/
 
 /* Bot avatar style */
-.bot-header-avatar {
+/*.bot-header-avatar {
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -864,10 +872,10 @@ html, body  {
 .message-text {
     white-space: pre-wrap;
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
-}
+}*/
 
 /* Input Area */
-.chat-input-area {
+/*.chat-input-area {
     display: flex;
     padding: 8px 12px;
     border-top: 1px solid #ccc;
@@ -933,10 +941,10 @@ html, body  {
 .typing .message-text {
     font-style: italic;
     opacity: 0.7;
-}
+}*/
 
 /* Responsive for smaller devices */
-@media (max-width: 480px) {
+/*@media (max-width: 480px) {
     .chat-window {
         width: 90vw;
         bottom: 80px;
@@ -978,7 +986,7 @@ html, body  {
   color: #333;
 }
 
-}
+}*/
 
 
 /* footer */

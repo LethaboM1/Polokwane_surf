@@ -14,6 +14,7 @@ import video1 from '../assets/move1.mp4'; //working
 import video2 from '../assets/move.mp4';
 import video3 from '../assets/move2.mp4';
 import video4 from '../assets/move3.mp4';
+import video5 from '../assets/airstrip.mp4';
 
 import '../App.css';
 
@@ -39,8 +40,9 @@ const galleryData = [
 
     { id: 9, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video1 },
     { id: 10, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video2 },
-    { id: 11, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video3 },
-    { id: 12, category: 'surface-finishing', title: 'Bitumen Application', image: video4 },
+    { id: 11, category: 'surface-finishing', title: 'Bitumen Application', image: video3 },
+    { id: 12, category: 'surface-finishing', title: 'Seal and Asphalt Surfacing', image: video4 },
+    { id: 13, category: 'surface-finishing', title: 'AirStrip', image: video5 },
 ];
 
 // Generate filters based on categories (All + mapped display names)

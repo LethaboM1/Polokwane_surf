@@ -26,55 +26,32 @@ const Contact = () => {
             });
 
             const text = await response.text();
-            let result;
-            try {
-                result = JSON.parse(text);
-            } catch {
-                result = { message: text };
-            }
+            const result = (() => {
+                try {
+                    return JSON.parse(text);
+                } catch {
+                    return { message: text };
+                }
+            })();
 
             if (response.ok) {
-                toast.success("Your message has been sent successfully!", {
-                    position: "bottom-center",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    className: 'my-toast-success',
-                });
-
+                toast.success("? Your message was sent!");
                 setName('');
                 setPhoneNumber('');
                 setEmail('');
                 setSubject('');
                 setMessage('');
             } else {
-                toast.error("? Failed to send: " + result.message, {
-                    position: "top-center",
-                    autoClose: 6000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    className: 'my-toast-error',
-                });
+                toast.error("? Failed to send: " + result.message);
             }
         } catch (error) {
             console.error("Error submitting form:", error);
-            toast.error("? An error occurred while sending the message.", {
-                position: "bottom-center",
-                autoClose: 6000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                className: 'my-toast-error',
-            });
+            toast.error("?? An error occurred while sending your message.");
         } finally {
             setLoading(false);
         }
     };
+
 
     return (
         <section id="contact" className="contact-section">

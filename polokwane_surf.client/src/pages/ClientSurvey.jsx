@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import CarouselSection from "../components/CarouselSection";
+import CarouselSection from '../components/CarouselSection';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../App.css';
 
 const ClientSurvey = () => {
@@ -12,40 +14,45 @@ const ClientSurvey = () => {
         feedback: ''
     });
 
+    const [starRating, setStarRating] = useState(0);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    //const handleSubmit = (e) => {
-    //    e.preventDefault();
-    //    console.log('Submitted data:', formData);
-    //    alert("Thank you for your feedback!");
-    //    setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
-    //};
+    const handleStarClick = (value) => {
+        setStarRating(value);
+        setFormData(prev => ({ ...prev, rating: value.toString() }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (starRating === 0) {
+            toast.error('Please select a star rating.');
+            return;
+        }
+
         try {
-            const response = await fetch('https://localhost:7059/api/survey/submit', {
+            const response = await fetch('https://localhost:7059/api/ClientSurvey/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
             if (response.ok) {
-                alert("Thank you for your feedback!");
+                toast.success('? Survey submitted successfully!');
                 setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
+                setStarRating(0);
             } else {
-                alert("Failed to submit survey. Please try again later.");
+                toast.error('? Failed to submit survey. Please try again.');
             }
         } catch (error) {
-            console.error("Survey submission error:", error);
-            alert("An error occurred. Please try again.");
+            console.error('Survey submission error:', error);
+            toast.error('?? An error occurred. Please try again later.');
         }
     };
-
-
 
     return (
         <>
@@ -95,19 +102,24 @@ const ClientSurvey = () => {
                                 />
                             </div>
                             <div className="col-md-6">
-                                <select
-                                    className="form-select"
-                                    name="rating"
-                                    value={formData.rating}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="">Rate Us</option>
-                                    <option value="Excellent">Excellent</option>
-                                    <option value="Good">Good</option>
-                                    <option value="Average">Average</option>
-                                    <option value="Poor">Poor</option>
-                                </select>
+                                <div className="star-rating">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <span
+                                            key={star}
+                                            onClick={() => handleStarClick(star)}
+                                            style={{
+                                                fontSize: '24px',
+                                                cursor: 'pointer',
+                                                color: star <= starRating ? '#f1c40f' : '#ccc',
+                                                fontFamily: 'Arial, sans-serif'
+                                            }}
+                                            dangerouslySetInnerHTML={{ __html: '&#9733;' }} // Unicode star
+                                        ></span>
+                                    ))}
+                                    <span className="ms-2">
+                                        {starRating > 0 ? `${starRating} Star${starRating > 1 ? 's' : ''}` : ''}
+                                    </span>
+                                </div>
                             </div>
                             <div className="col-12">
                                 <textarea
@@ -126,6 +138,7 @@ const ClientSurvey = () => {
                         </div>
                     </form>
                 </div>
+                <ToastContainer position="top-right" autoClose={3000} />
             </section>
         </>
     );
