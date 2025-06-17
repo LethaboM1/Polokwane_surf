@@ -12,10 +12,11 @@ namespace Polokwane_surf.Server.Controllers
         private readonly EmailService _emailService;
         private readonly SmsService _smsService;
 
-        public ContactController(EmailService emailService, SmsService smsService)
+        //public ContactController(EmailService emailService, SmsService smsService)
+        public ContactController(EmailService emailService)
         {
             _emailService = emailService;
-            _smsService = smsService;
+            //_smsService = smsService;
         }
 
         [HttpPost("submit")]
@@ -94,23 +95,23 @@ namespace Polokwane_surf.Server.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        [HttpGet("test-sms")]
-        public async Task<IActionResult> TestSms([FromQuery] string phone)
-        {
-            if (string.IsNullOrWhiteSpace(phone))
-                return BadRequest("Phone number is required.");
+        //[HttpGet("test-sms")]
+        //public async Task<IActionResult> TestSms([FromQuery] string phone)
+        //{
+        //    if (string.IsNullOrWhiteSpace(phone))
+        //        return BadRequest("Phone number is required.");
 
-            try
-            {
-                string testMessage = "Hello from Polokwane Surfacing! This is a test SMS.";
-                await _smsService.SendSmsAsync(phone, testMessage);
-                return Ok($"Test SMS sent to {phone}.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Failed to send SMS: {ex.Message}");
-            }
-        }
+        //    try
+        //    {
+        //        string testMessage = "Hello from Polokwane Surfacing! This is a test SMS.";
+        //        await _smsService.SendSmsAsync(phone, testMessage);
+        //        return Ok($"Test SMS sent to {phone}.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Failed to send SMS: {ex.Message}");
+        //    }
+        //}
 
     }
 }

@@ -9,14 +9,14 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        const formData = { name, mobileNumber, email, subject, message };
+        const formData = { name, phoneNumber, email, subject, message };
 
         try {
             const response = await fetch('https://localhost:7059/api/contact/submit', {
@@ -45,7 +45,7 @@ const Contact = () => {
                 });
 
                 setName('');
-                setMobileNumber('');
+                setPhoneNumber('');
                 setEmail('');
                 setSubject('');
                 setMessage('');
@@ -164,8 +164,8 @@ const Contact = () => {
                                 type="text"
                                 name="mobileNumber"
                                 placeholder="Enter Mobile Number"
-                                value={mobileNumber}
-                                onChange={(e) => setMobileNumber(e.target.value)}
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
                             />
                             <input
                                 type="email"
