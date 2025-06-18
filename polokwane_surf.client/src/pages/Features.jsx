@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import visionImg from '../assets/vision.png';
-import missionImg from '../assets/mission.png';
-import teamImg from '../assets/team2.png';
-import socialImg from '../assets/socials.jpg';
+import visionImg from '../assets/icons/vision.png';
+import missionImg from '../assets/icons/mission.png';
+import teamImg from '../assets/icons/team2.png';
+import socialImg from '../assets/icons/socials.jpg';
 
-import con1 from '../assets/mis.png';
-import con2 from '../assets/vi.png';
-import con3 from '../assets/16.jpg';
-import con4 from '../assets/response.png';
+import con1 from '../assets/image/mis.png';
+import con2 from '../assets/image/vi.png';
+import con3 from '../assets/image/16.jpg';
+import con4 from '../assets/image/response.png';
 import '../App.css';
 
 const features = [

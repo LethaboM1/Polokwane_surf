@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
  //main roads
-import img2 from '../assets/9.jpg';
-import img5 from '../assets/8.jpg';
+import img2 from '../assets/image/9.jpg';
+import img5 from '../assets/image/8.jpg';
 
-import img6 from '../assets/11.jpg'; //machines
-import img9 from '../assets/14.jpg';
-import img10 from '../assets/15.jpg';
-import img13 from '../assets/18.jpg';
-import img14 from '../assets/19.jpg';
-import img15 from '../assets/5.jpg';
+import img6 from '../assets/image/11.jpg'; //machines
+import img9 from '../assets/image/14.jpg';
+import img10 from '../assets/image/15.jpg';
+import img13 from '../assets/image/18.jpg';
+import img14 from '../assets/image/19.jpg';
+import img15 from '../assets/image/5.jpg';
 
-import video1 from '../assets/move1.mp4'; //working
-import video2 from '../assets/move.mp4';
-import video3 from '../assets/move2.mp4';
-import video4 from '../assets/move3.mp4';
-import video5 from '../assets/airstrip.mp4';
+import video1 from '../assets/video/move1.mp4'; //working
+import video2 from '../assets/video/move.mp4';
+import video3 from '../assets/video/move2.mp4';
+import video4 from '../assets/video/move3.mp4';
+import video5 from '../assets/video/airstrip.mp4';
 
 import '../App.css';
 
@@ -39,7 +39,7 @@ const galleryData = [
     { id: 8, category: 'residential-access', title: 'Milling and Recycling ', image: img6 },
 
     { id: 9, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video1 },
-    { id: 10, category: 'surface-finishing', title: 'Asphalt Surfacing', image: video2 },
+    { id: 10, category: 'surface-finishing', title: 'Fog Spray', image: video2 },
     { id: 11, category: 'surface-finishing', title: 'Bitumen Application', image: video3 },
     { id: 12, category: 'surface-finishing', title: 'Seal and Asphalt Surfacing', image: video4 },
     { id: 13, category: 'surface-finishing', title: 'AirStrip', image: video5 },

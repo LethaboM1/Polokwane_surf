@@ -1,124 +1,141 @@
 import React, { useState } from 'react';
-import recent from '../assets/14.jpg';
-import progress from '../assets/4.jpg';
-import road from '../assets/9.jpg';
 import '../App.css';
+
+import recent1 from '../assets/image/4.jpg';
+import recent2 from '../assets/image/5.jpg';
+import recent3 from '../assets/image/9.jpg';
+import recent4 from '../assets/image/18.jpg';
+import recent5 from '../assets/image/19.jpg';
+
+import progress1 from '../assets/image/20.jpg';
+import progress2 from '../assets/image/21.jpg';
+import progress3 from '../assets/image/22.jpg';
+import progress4 from '../assets/image/23.jpg';
+import progress5 from '../assets/image/24.jpg';
+
+import complete1 from '../assets/image/25.jpg';
+import complete2 from '../assets/image/26.jpg';
+import complete3 from '../assets/image/27.jpg';
+import complete4 from '../assets/image/28.jpg';
+import complete5 from '../assets/image/30.jpg';
+
 
 const categories = ['Recent Contracts','Contracts in Progress', 'Completed Contracts'];
 
 const portfolioItems = [
+    // ? Recent Contracts
     {
         category: 'Recent Contracts',
         title: 'MOTLOKWA TRANSPORT',
-        description: 'NEC3 Engineering and construction short contract (ecsc) Rev 02 2023 for - SLP road upgrade- Masonje Hill to Mpitikwane road',
+        description: 'NEC3 Engineering and construction short contract (ecsc)...',
         client: 'Modikwa Platinum Mine',
-        image: recent,
+        image: recent1,
     },
     {
         category: 'Recent Contracts',
         title: 'SEF MOD PROJECTS ',
-        description: `3 years household based routine road maintenance project at Lephalale local Municipality in Limpopo Province.`,
-        client: 'Limpopo Provincial Government', 
+        description: `3 years household-based routine road maintenance...`,
+        client: 'Limpopo Provincial Government',
         Dept: 'Public Works, Road and Infrastructure - MS.Moloto M.V',
-        image: recent,
+        image: recent2,
     },
     {
         category: 'Recent Contracts',
         title: 'MOTSEWAKHUMO JV MOCHEKU',
-        description: 'Allocation of Scope of works for upgrading of road from Ga Maja Moshate to Feke ',
+        description: 'Upgrading road from Ga Maja Moshate to Feke.',
         client: 'Polokwane municipality',
-        image: recent,
+        image: recent3,
     },
     {
         category: 'Recent Contracts',
         title: 'RM MASHABA PROJECTS',
-        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D2 part A (2KM) ',
+        description: 'Preventative maintenance: Pavement milling at Giyani.',
         client: 'Giyani Municipality',
-        image: recent,
+        image: recent4,
     },
     {
         category: 'Recent Contracts',
         title: 'MAPHALA GROUP SERVICES',
-        description: 'Rehabilitation of the Alldays Internal streets and storm water control Phase 1',
+        description: 'Rehabilitation of Alldays Internal streets...',
         client: 'Blouberg Municipality',
-        image: recent,
+        image: recent5,
     },
 
-
+    // ? Contracts in Progress
     {
         category: 'Contracts in Progress',
         title: 'OBEE AND FAMILY HOLDINGS',
-        description: 'NRA.002-109-2019/2 STEELPOORT: SURFACE REPAIR R574 FROM KM 22.0 TO KM 29.0',
+        description: 'STEELPOORT: SURFACE REPAIR R574...',
         client: 'Itumeleng Construction',
-        image: progress,
+        image: progress1,
     },
     {
         category: 'Contracts in Progress',
         title: 'CAPOTEX JV KNM CIVILS',
-        description: 'Upgrading of Road D4283 from Glencowie to Malaka in the Sekhukhune District of Limpopo ',
+        description: 'Upgrading of Road D4283 from Glencowie...',
         client: 'Roads Agency Limpopo Province',
-        image: progress,
+        image: progress2,
     },
     {
         category: 'Contracts in Progress',
         title: 'MALERATE CONSTRUCTION',
-        description: 'Allocation of Scope of work for upgrading pf the arterial road in Magongwa village from road D3378 to road D19 ( Ward 42)',
+        description: 'Upgrading the arterial road in Magongwa...',
         client: 'Polokwane Municipality',
-        image: progress,
+        image: progress3,
     },
     {
         category: 'Contracts in Progress',
         title: 'RAEISEBE INFRASTRUCTURE DEVELOPERS',
-        description: 'Construction of the Masisi street paved road phase 1',
+        description: 'Construction of Masisi street paved road.',
         client: 'Musina Local Municipality',
-        image: progress,
+        image: progress4,
     },
-
     {
         category: 'Contracts in Progress',
-        title: 'RM MASHABA PROJECTS ',
-        description: 'Allocation for  preventative maintenance of roads and stormwater: Pavement milling at Giyani Section D2 part A (2KM)',
+        title: 'RM MASHABA PROJECTS',
+        description: 'Preventative maintenance at Giyani Section D2.',
         client: 'Giyani Municipality',
-        image: progress,
+        image: progress5,
     },
 
+    // ? Completed Contracts
     {
         category: 'Completed Contracts',
         title: 'BAMBOO ROCK',
-        description: 'Upgrade of the 2,5km on the RAL Road D4260 in Malope to Phokwane ( Double seals and fog spray and surfacing on the Bridge deck)',
+        description: 'Upgrade of 2.5km RAL Road D4260 in Malope...',
         client: 'Roads Agency Limpopo Province',
-        image: road,
+        image: complete1,
     },
     {
         category: 'Completed Contracts',
         title: 'PROCLASS NTSA TRADING JV',
-        description: 'Construction of  road from Ga-Boelang Village to Marieskop (Phase 1 )',
+        description: 'Construction of road from Ga-Boelang to Marieskop...',
         client: 'Bushbuckrige Municipality',
-        image: road,
+        image: complete2,
     },
     {
         category: 'Completed Contracts',
         title: 'CAROFIN PROJECTS',
-        description: 'Construction of access road from maila mapitsane to magolego tribal office phase 1',
+        description: 'Access road from Maila Mapitsane to Magolego...',
         client: 'Makhuduthamaga Municipality',
-        image: road,
+        image: complete3,
     },
     {
         category: 'Completed Contracts',
         title: 'NKOMBA AND DIFF JV',
-        description: 'Upgrading of rural access road D4422 near Thulamahashe (5,63km) in the Bohlabela Region of the Mpumalanga province.',
+        description: 'Upgrading of rural access road D4422 near Thulamahashe.',
         client: 'Modikwa Platinum Mine',
-        image: road,
+        image: complete4,
     },
     {
         category: 'Completed Contracts',
         title: 'MOTLOKWA TRANSPORT',
-        description: 'NEC3 Engineering and construction short contract (ecsc) Rev 02 2023 for - SLP road upgrade- Masonje Hill to Mpitikwane road',
-        client: 'Public works, road and transport',
-        image: road,
+        description: 'SLP road upgrade - Masonje Hill to Mpitikwane road.',
+        client: 'Public Works, Road and Transport',
+        image: complete5,
     },
-
 ];
+
 
 
 const Portfolio = () => {

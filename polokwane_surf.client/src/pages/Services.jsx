@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import brief from '../assets/briefcase.png';
-import truck from '../assets/truck.png';
-import industry from '../assets/industry.png';
-import affli from '../assets/affli.png';
+import brief from '../assets/icons/briefcase.png';
+import truck from '../assets/icons/truck.png';
+import industry from '../assets/icons/industry.png';
+import affli from '../assets/icons/affli.png';
+
 import '../App.css';
 
 const Services = () => {

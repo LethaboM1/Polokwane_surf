@@ -3,16 +3,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import test1 from '../assets/test1.jpg';
-import test2 from '../assets/test2.jpg';
-import test3 from '../assets/2.jpg';
-import test4 from '../assets/3.jpg';
-import test5 from '../assets/4.jpg';
-import test6 from '../assets/4.jpg';
-import test7 from '../assets/4.jpg';
-import test8 from '../assets/4.jpg';
-import test9 from '../assets/4.jpg';
-import test10 from '../assets/4.jpg';
+import test1 from '../assets/image/test1.jpg';
+import test2 from '../assets/image/test2.jpg';
+import test3 from '../assets/image/2.jpg';
+import test4 from '../assets/image/3.jpg';
+import test5 from '../assets/image/4.jpg';
+import test6 from '../assets/image/4.jpg';
+import test7 from '../assets/image/4.jpg';
+import test8 from '../assets/image/4.jpg';
+import test9 from '../assets/image/4.jpg';
+import test10 from '../assets/image/4.jpg';
 import '../App.css';
 
 const testimonials = [

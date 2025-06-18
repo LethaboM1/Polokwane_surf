@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../components/Header';
 import CarouselSection from "../components/CarouselSection";
-import pdfIcon from '../assets/company.png';
-import Icon from '../assets/document.png';
-import Icon1 from '../assets/docu.png';
-import Icon2 from '../assets/docuu.png';
+import pdfIcon from '../assets/icons/company.png';
+import Icon from "../assets/icons/docu.png";
+import Icon1 from '../assets/icons/docu.png';
+import Icon2 from '../assets/icons/docuu.png';
 import '../App.css';
 
 const documents = [

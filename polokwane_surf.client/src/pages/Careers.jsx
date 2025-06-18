@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import CarouselSection from "../components/CarouselSection";
-import careerIcon from '../assets/careers.png';
+import careerIcon from '../assets/icons/careers.png';
 import '../App.css';
 
 const careers = [
