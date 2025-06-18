@@ -8,9 +8,6 @@ import Portfolio from './Portfolio';
 import Testimonial from './Testimonial';
 import Services from './Services';
 import Gallery from './Gallery';
-//import Documents from './Documents';
-//import Chatbot from './Chatbot';
-//import ClientSurvey from './Survey';
 import Contact from './Contact';
 import ScrollToTop from '../components/ScrollToTop';
 

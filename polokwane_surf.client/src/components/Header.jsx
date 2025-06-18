@@ -47,7 +47,7 @@ const Header = () => {
                             <span>Client Survey</span>
                             <ul className="dropdown-menu">
                                 <li><Link to="/documents" onClick={closeMobileNav}>Documents</Link></li>
-                                <li><Link to="/careers" onClick={closeMobileNav}>Careers</Link></li>
+                                {/*<li><Link to="/careers" onClick={closeMobileNav}>Careers</Link></li>*/}
                                 <li><Link to="/clientsurvey" onClick={closeMobileNav}>Survey</Link></li>
                             </ul>
                         </li>
