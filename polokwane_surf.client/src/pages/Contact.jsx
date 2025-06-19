@@ -35,7 +35,7 @@ const Contact = () => {
             })();
 
             if (response.ok) {
-                toast.success("? Your message was sent!");
+                toast.success("Your message was sent!");
                 setName('');
                 setPhoneNumber('');
                 setEmail('');

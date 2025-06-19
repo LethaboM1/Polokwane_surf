@@ -42,15 +42,15 @@ const ClientSurvey = () => {
             });
 
             if (response.ok) {
-                toast.success('? Survey submitted successfully!');
+                toast.success('Survey submitted successfully!');
                 setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
                 setStarRating(0);
             } else {
-                toast.error('? Failed to submit survey. Please try again.');
+                toast.error('Failed to submit survey. Please try again.');
             }
         } catch (error) {
             console.error('Survey submission error:', error);
-            toast.error('?? An error occurred. Please try again later.');
+            toast.error('An error occurred. Please try again later.');
         }
     };
 
