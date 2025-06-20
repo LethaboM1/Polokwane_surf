@@ -3,6 +3,8 @@ import '../App.css';
 import { FaEnvelope, FaMapMarkerAlt, FaFax } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
+
 
 const Contact = () => {
     const [name, setName] = useState('');
@@ -12,6 +14,46 @@ const Contact = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false);
 
+    //const handleSubmit = async (e) => {
+    //    e.preventDefault();
+    //    setLoading(true);
+
+    //    const formData = { name, phoneNumber, email, subject, message };
+
+    //    try {
+    //        const response = await fetch('https://localhost:7059/api/contact/submit', {
+    //            method: 'POST',
+    //            headers: { 'Content-Type': 'application/json' },
+    //            body: JSON.stringify(formData),
+    //        });
+
+    //        const text = await response.text();
+    //        const result = (() => {
+    //            try {
+    //                return JSON.parse(text);
+    //            } catch {
+    //                return { message: text };
+    //            }
+    //        })();
+
+    //        if (response.ok) {
+    //            toast.success("Your message was sent!");
+    //            setName('');
+    //            setPhoneNumber('');
+    //            setEmail('');
+    //            setSubject('');
+    //            setMessage('');
+    //        } else {
+    //            toast.error("? Failed to send: " + result.message);
+    //        }
+    //    } catch (error) {
+    //        console.error("Error submitting form:", error);
+    //        toast.error("?? An error occurred while sending your message.");
+    //    } finally {
+    //        setLoading(false);
+    //    }
+    //};
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -19,34 +61,32 @@ const Contact = () => {
         const formData = { name, phoneNumber, email, subject, message };
 
         try {
-            const response = await fetch('https://localhost:7059/api/contact/submit', {
+            // Save to DB via .NET API
+            const dbResponse = await fetch('https://localhost:7059/api/contact/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
-            const text = await response.text();
-            const result = (() => {
-                try {
-                    return JSON.parse(text);
-                } catch {
-                    return { message: text };
-                }
-            })();
+            if (!dbResponse.ok) throw new Error("Failed to save message to database.");
 
-            if (response.ok) {
-                toast.success("Your message was sent!");
-                setName('');
-                setPhoneNumber('');
-                setEmail('');
-                setSubject('');
-                setMessage('');
-            } else {
-                toast.error("? Failed to send: " + result.message);
-            }
+            // Send email via EmailJS
+            await emailjs.send(
+                'service_1ikwxjx',
+                'template_pl5mjv4', 
+                formData,
+                'RR4ItprwwQRo67VD-'
+            );
+
+            toast.success("Message sent successfully!");
+            setName('');
+            setPhoneNumber('');
+            setEmail('');
+            setSubject('');
+            setMessage('');
         } catch (error) {
-            console.error("Error submitting form:", error);
-            toast.error("?? An error occurred while sending your message.");
+            console.error("Error:", error);
+            toast.error("Something went wrong. Please try again.");
         } finally {
             setLoading(false);
         }

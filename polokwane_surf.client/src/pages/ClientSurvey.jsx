@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import CarouselSection from '../components/CarouselSection';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
 import '../App.css';
 
 const ClientSurvey = () => {
@@ -26,6 +27,53 @@ const ClientSurvey = () => {
         setFormData(prev => ({ ...prev, rating: value.toString() }));
     };
 
+    //const handleSubmit = async (e) => {
+    //    e.preventDefault();
+
+    //    if (starRating === 0) {
+    //        toast.error('Please select a star rating.');
+    //        return;
+    //    }
+
+    //    // ?? Generate the stars string on frontend
+    //    const stars = '??'.repeat(starRating);
+
+    //    try {
+    //        const response = await fetch('https://localhost:7059/api/ClientSurvey/submit', {
+    //            method: 'POST',
+    //            headers: { 'Content-Type': 'application/json' },
+    //            body: JSON.stringify(formData),
+    //        });
+
+    //        if (response.ok) {
+    //            // ? Send survey confirmation email via EmailJS
+    //            await emailjs.send(
+                    //'service_1ikwxjx',
+                    //'template_azbebum',
+    //                {
+    //                    name: formData.name,
+    //                    email: formData.email,
+    //                    serviceUsed: formData.serviceUsed,
+    //                    rating: starRating.toString(),
+    //                    stars: stars, // pass it to template
+    //                    feedback: formData.feedback,
+    //                },
+    //                'RR4ItprwwQRo67VD-'
+    //            );
+
+    //            toast.success('Survey submitted and email sent!');
+    //            setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
+    //            setStarRating(0);
+    //        } else {
+    //            toast.error('Failed to submit survey. Please try again.');
+    //        }
+    //    } catch (error) {
+    //        console.error('Survey submission error:', error);
+    //        toast.error('An error occurred. Please try again later.');
+    //    }
+    //};
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,6 +81,8 @@ const ClientSurvey = () => {
             toast.error('Please select a star rating.');
             return;
         }
+
+        const stars = '??'.repeat(starRating);
 
         try {
             const response = await fetch('https://localhost:7059/api/ClientSurvey/submit', {
@@ -42,7 +92,28 @@ const ClientSurvey = () => {
             });
 
             if (response.ok) {
+                // ? Show toast first
                 toast.success('Survey submitted successfully!');
+
+                // ? Trigger email, but don't await
+                emailjs.send(
+                    'service_1ikwxjx',
+                    'template_azbebum',
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        serviceUsed: formData.serviceUsed,
+                        rating: starRating.toString(),
+                        stars,
+                        feedback: formData.feedback,
+                    },
+                    'RR4ItprwwQRo67VD-'
+                ).catch((error) => {
+                    console.error('EmailJS failed:', error);
+                    toast.error('Survey saved but email failed to send.');
+                });
+
+                // ? Reset form
                 setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
                 setStarRating(0);
             } else {
@@ -135,6 +206,7 @@ const ClientSurvey = () => {
                             <div className="col-12 text-end">
                                 <button type="submit" className="btn btn-success px-4">Submit Survey</button>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -145,3 +217,4 @@ const ClientSurvey = () => {
 };
 
 export default ClientSurvey;
+
