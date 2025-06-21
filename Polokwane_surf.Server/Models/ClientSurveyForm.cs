@@ -6,25 +6,19 @@ public class ClientSurveyForm
     public int Id { get; set; }
 
     [Required]
-    [Column(TypeName = "varchar(100)")]
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
+
+    [Required, EmailAddress]
+    public string Email { get; set; }
 
     [Required]
-    [EmailAddress]
-    [Column(TypeName = "varchar(150)")]
-    public string Email { get; set; } = string.Empty;
+    public string ServiceUsed { get; set; }
 
     [Required]
-    [Column(TypeName = "varchar(150)")]
-    public string ServiceUsed { get; set; } = string.Empty;
+    public string Rating { get; set; }
 
     [Required]
-    [Column(TypeName = "varchar(5)")]
-    public string Rating { get; set; } = string.Empty;
-
-    [Required]
-    [Column(TypeName = "text")]
-    public string Feedback { get; set; } = string.Empty;
+    public string Feedback { get; set; }
 
     public DateTime SubmittedAt { get; set; }
 }

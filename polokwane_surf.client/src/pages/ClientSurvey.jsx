@@ -27,53 +27,6 @@ const ClientSurvey = () => {
         setFormData(prev => ({ ...prev, rating: value.toString() }));
     };
 
-    //const handleSubmit = async (e) => {
-    //    e.preventDefault();
-
-    //    if (starRating === 0) {
-    //        toast.error('Please select a star rating.');
-    //        return;
-    //    }
-
-    //    // ?? Generate the stars string on frontend
-    //    const stars = '??'.repeat(starRating);
-
-    //    try {
-    //        const response = await fetch('https://localhost:7059/api/ClientSurvey/submit', {
-    //            method: 'POST',
-    //            headers: { 'Content-Type': 'application/json' },
-    //            body: JSON.stringify(formData),
-    //        });
-
-    //        if (response.ok) {
-    //            // ? Send survey confirmation email via EmailJS
-    //            await emailjs.send(
-                    //'service_1ikwxjx',
-                    //'template_azbebum',
-    //                {
-    //                    name: formData.name,
-    //                    email: formData.email,
-    //                    serviceUsed: formData.serviceUsed,
-    //                    rating: starRating.toString(),
-    //                    stars: stars, // pass it to template
-    //                    feedback: formData.feedback,
-    //                },
-    //                'RR4ItprwwQRo67VD-'
-    //            );
-
-    //            toast.success('Survey submitted and email sent!');
-    //            setFormData({ name: '', email: '', serviceUsed: '', rating: '', feedback: '' });
-    //            setStarRating(0);
-    //        } else {
-    //            toast.error('Failed to submit survey. Please try again.');
-    //        }
-    //    } catch (error) {
-    //        console.error('Survey submission error:', error);
-    //        toast.error('An error occurred. Please try again later.');
-    //    }
-    //};
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 

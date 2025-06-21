@@ -14,46 +14,6 @@ const Contact = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [loading, setLoading] = useState(false);
 
-    //const handleSubmit = async (e) => {
-    //    e.preventDefault();
-    //    setLoading(true);
-
-    //    const formData = { name, phoneNumber, email, subject, message };
-
-    //    try {
-    //        const response = await fetch('https://localhost:7059/api/contact/submit', {
-    //            method: 'POST',
-    //            headers: { 'Content-Type': 'application/json' },
-    //            body: JSON.stringify(formData),
-    //        });
-
-    //        const text = await response.text();
-    //        const result = (() => {
-    //            try {
-    //                return JSON.parse(text);
-    //            } catch {
-    //                return { message: text };
-    //            }
-    //        })();
-
-    //        if (response.ok) {
-    //            toast.success("Your message was sent!");
-    //            setName('');
-    //            setPhoneNumber('');
-    //            setEmail('');
-    //            setSubject('');
-    //            setMessage('');
-    //        } else {
-    //            toast.error("? Failed to send: " + result.message);
-    //        }
-    //    } catch (error) {
-    //        console.error("Error submitting form:", error);
-    //        toast.error("?? An error occurred while sending your message.");
-    //    } finally {
-    //        setLoading(false);
-    //    }
-    //};
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
