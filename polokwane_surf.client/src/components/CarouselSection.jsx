@@ -6,13 +6,14 @@ import slide2 from '../assets/image/4.jpg';
 import slide3 from '../assets/image/5.jpg';
 import slide4 from '../assets/image/6.jpg';
 import slide5 from '../assets/image/7.jpg';
+import slide6 from '../assets/image/37.jpg';
 import '../App.css';
 
 const CarouselSection = () => {
     return (
         <div className="carousel-wrapper">
             <Carousel fade interval={4000}>
-                {[slide1, slide2, slide3, slide4, slide5].map((slide, idx) => (
+                {[slide1, slide2, slide3, slide4, slide5,slide6].map((slide, idx) => (
                     <Carousel.Item key={idx}>
                         <img
                             className="d-block w-100 carousel-img"

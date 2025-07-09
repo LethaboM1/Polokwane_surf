@@ -11,7 +11,7 @@ import progress1 from '../assets/image/20.jpg';
 import progress2 from '../assets/image/21.jpg';
 import progress3 from '../assets/image/22.jpg';
 import progress4 from '../assets/image/23.jpg';
-import progress5 from '../assets/image/24.jpg';
+import progress5 from '../assets/image/36.png';
 
 import complete1 from '../assets/image/25.jpg';
 import complete2 from '../assets/image/26.jpg';
