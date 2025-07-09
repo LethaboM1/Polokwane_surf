@@ -1,110 +1,50 @@
-// import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import fs from 'fs'
+import path from 'path'
+import child_process from 'child_process'
+import { env } from 'process'
+import { fileURLToPath, URL } from 'node:url'
 
-// import { defineConfig } from 'vite';
-// import plugin from '@vitejs/plugin-react';
-// import fs from 'fs';
-// import path from 'path';
-// import child_process from 'child_process';
-// import { env } from 'process';
+const isLocal = process.env.NODE_ENV !== 'production' && !process.env.CI
 
-// const baseFolder =
-//     env.APPDATA !== undefined && env.APPDATA !== ''
-//         ? `${env.APPDATA}/ASP.NET/https`
-//         : `${env.HOME}/.aspnet/https`;
+let httpsOptions = false
 
-// const certificateName = "polokwane_surf.client";
-// const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-// const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+if (isLocal) {
+  const baseFolder =
+    env.APPDATA !== undefined && env.APPDATA !== ''
+      ? `${env.APPDATA}/ASP.NET/https`
+      : `${env.HOME}/.aspnet/https`
 
-// if (!fs.existsSync(baseFolder)) {
-//     fs.mkdirSync(baseFolder, { recursive: true });
-// }
+  const certificateName = 'polokwane_surf.client'
+  const certFilePath = path.join(baseFolder, `${certificateName}.pem`)
+  const keyFilePath = path.join(baseFolder, `${certificateName}.key`)
 
-// if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-//     if (0 !== child_process.spawnSync('dotnet', [
-//         'dev-certs',
-//         'https',
-//         '--export-path',
-//         certFilePath,
-//         '--format',
-//         'Pem',
-//         '--no-password',
-//     ], { stdio: 'inherit', }).status) {
-//         throw new Error("Could not create certificate.");
-//     }
-// }
+  if (!fs.existsSync(baseFolder)) {
+    fs.mkdirSync(baseFolder, { recursive: true })
+  }
 
-// const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-//     env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7059';
+  if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+    const result = child_process.spawnSync('dotnet', [
+      'dev-certs',
+      'https',
+      '--export-path',
+      certFilePath,
+      '--format',
+      'Pem',
+      '--no-password',
+    ])
 
-// // https://vitejs.dev/config/
-// export default defineConfig({
-//     plugins: [plugin()],
-//     resolve: {
-//         alias: {
-//             '@': fileURLToPath(new URL('./src', import.meta.url))
-//         }
-//     },
-//     server: {
-//         proxy: {
-//             '^/weatherforecast': {
-//                 target,
-//                 secure: false
-//             }
-//         },
-//         port: parseInt(env.DEV_SERVER_PORT || '49381'),
-//         https: {
-//             key: fs.readFileSync(keyFilePath),
-//             cert: fs.readFileSync(certFilePath),
-//         }
-//     }
-// })
+    if (result.status !== 0) {
+      throw new Error('Could not create certificate.')
+    }
+  }
 
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import fs from 'fs';
-import path from 'path';
-import child_process from 'child_process';
-import { env } from 'process';
-
-const baseFolder =
-  env.APPDATA !== undefined && env.APPDATA !== ''
-    ? `${env.APPDATA}/ASP.NET/https`
-    : `${env.HOME}/.aspnet/https`;
-
-const certificateName = 'polokwane_surf.client';
-const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-
-if (!fs.existsSync(baseFolder)) {
-  fs.mkdirSync(baseFolder, { recursive: true });
-}
-
-if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-  if (
-    0 !==
-    child_process.spawnSync(
-      'dotnet',
-      [
-        'dev-certs',
-        'https',
-        '--export-path',
-        certFilePath,
-        '--format',
-        'Pem',
-        '--no-password',
-      ],
-      { stdio: 'inherit' }
-    ).status
-  ) {
-    throw new Error('Could not create certificate.');
+  httpsOptions = {
+    key: fs.readFileSync(keyFilePath),
+    cert: fs.readFileSync(certFilePath),
   }
 }
-
-
-// 🔁 Replace ASP.NET Core target with your Express backend:
-const expressTarget = 'http://localhost:5000';
 
 export default defineConfig({
   plugins: [react()],
@@ -114,17 +54,15 @@ export default defineConfig({
     },
   },
   server: {
+    host: true,
     port: parseInt(env.DEV_SERVER_PORT || '49381'),
-    https: {
-      key: fs.readFileSync(keyFilePath),
-      cert: fs.readFileSync(certFilePath),
-    },
+    https: httpsOptions,
     proxy: {
       '/api': {
-        target: expressTarget,
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       },
     },
   },
-});
+})
