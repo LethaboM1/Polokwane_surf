@@ -24,9 +24,20 @@ import Contact from './pages/Contact';
 
 function App() {
     useEffect(() => {
+        // Init animations
         AOS.init({ duration: 1000, once: true });
-    }, []);
 
+        // Test backend connection
+        fetch(`${import.meta.env.VITE_API_URL}/api/hello`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Backend API says:", data.message);
+            })
+            .catch((error) => {
+                console.error("Error fetching from backend:", error);
+            });
+    }, []);
+    
     return (
         <Router>
             <Header />
