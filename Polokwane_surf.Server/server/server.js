@@ -1,13 +1,15 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 5000;
+const express = require('express')
+const cors = require('cors')
+const app = express()
+const PORT = process.env.PORT || 5000
 
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
 app.get('/api/hello', (req, res) => {
-  res.send({ message: 'Hello from the backend!' });
-});
+  res.json({ message: 'Hello from backend!' })
+})
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+  console.log(`Server is running on port ${PORT}`)
+})
