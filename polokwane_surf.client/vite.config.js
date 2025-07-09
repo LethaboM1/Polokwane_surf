@@ -1,24 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import child_process from 'child_process';
-import { fileURLToPath, URL } from 'node:url';
-import { env } from 'process';
+import { defineConfig } from 'vite';
+import reactPlugin from '@vitejs/plugin-react';
 
-// Only use HTTPS locally — skip this on Vercel or any CI
-const isLocal =
-  process.env.NODE_ENV !== 'production' && !process.env.CI;
+const isVercel = process.env.VERCEL === '1';
 
-let httpsOptions = false;
+let httpsConfig = false;
 
-if (isLocal) {
-  const baseFolder =
-    env.APPDATA !== undefined && env.APPDATA !== ''
-      ? `${env.APPDATA}/ASP.NET/https`
-      : `${env.HOME}/.aspnet/https`;
-
-  const certificateName = 'polokwane_surf.client';
+if (!isVercel) {
+  const baseFolder = process.env.APPDATA
+    ? `${process.env.APPDATA}/ASP.NET/https`
+    : `${process.env.HOME}/.aspnet/https`;
+  const certificateName = "polokwane_surf.client";
   const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
   const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
@@ -27,42 +21,41 @@ if (isLocal) {
   }
 
   if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-    const result = child_process.spawnSync('dotnet', [
-      'dev-certs',
-      'https',
-      '--export-path',
-      certFilePath,
-      '--format',
-      'Pem',
-      '--no-password',
-    ]);
-
-    if (result.status !== 0) {
+    if (
+      0 !==
+      child_process.spawnSync('dotnet', [
+        'dev-certs',
+        'https',
+        '--export-path',
+        certFilePath,
+        '--format',
+        'Pem',
+        '--no-password',
+      ]).status
+    ) {
       throw new Error('Could not create certificate.');
     }
   }
 
-  httpsOptions = {
+  httpsConfig = {
     key: fs.readFileSync(keyFilePath),
     cert: fs.readFileSync(certFilePath),
   };
 }
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+  plugins: [reactPlugin()],
   server: {
-    host: true,
-    port: parseInt(env.DEV_SERVER_PORT || '49381'),
-    https: httpsOptions,
+    https: httpsConfig,
+    port: Number(process.env.DEV_SERVER_PORT) || 49381,
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
+      '^/weatherforecast': {
+        target:
+          process.env.ASPNETCORE_HTTPS_PORT
+            ? `https://localhost:${process.env.ASPNETCORE_HTTPS_PORT}`
+            : process.env.ASPNETCORE_URLS
+            ? process.env.ASPNETCORE_URLS.split(';')[0]
+            : 'https://localhost:7059',
         secure: false,
       },
     },
